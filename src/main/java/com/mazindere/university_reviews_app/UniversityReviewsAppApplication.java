@@ -5,9 +5,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class UniversityReviewsAppApplication {
-	//todo -password hashing -create landing page - a successful snackbar after signing up then go login
-	//todo -check 2 passwords again
-	
+	//todo check on the user type -admin and user -to be checked later not now
+	//todo -shld navbar be also in sign up and log in pages?
 
 
 
