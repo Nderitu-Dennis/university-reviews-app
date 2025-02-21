@@ -7,13 +7,13 @@
     <script src="https://cdn.tailwindcss.com"></script>
 
 </head>
-<body class="bg-gray-100">
+<body class="bg-gray-100 pt-18">
 
 <!-- Include Navbar Fragment -->
 <div th:replace="~{fragments/navbar :: nav}"></div>
 
-<!-- ✅ Hero Section -->
-<section class="relative w-full h-[400px] md:h-[500px] lg:h-[600px]">
+<!--Hero Section -->
+<section class="relative w-full h-[500px] md:h-[600px] lg:h-[700px]">
     <img th:src="@{/images/landing_page_pic.png}"
          alt="Students smiling in a university setting"
          class="absolute inset-0 w-full h-full object-cover opacity-80">
@@ -21,13 +21,13 @@
     <!-- Overlay Content -->
     <div class="absolute inset-0 flex flex-col items-center justify-center text-white text-center bg-black bg-opacity-50">
         <h1 class="text-3xl md:text-5xl lg:text-6xl font-bold">Discover Kenya's Top Universities</h1>
-        <p class="text-lg md:text-xl lg:text-2xl mt-4">Find real student reviews and insights on Kenyan universities.</p>
-        <p class="text-lg md:text-xl lg:text-2xl mt-2">Make informed decisions about your education journey.</p>
+        <p class="text-lg md:text-xl lg:text-2xl mt-4">Find real student reviews and insights on Kenyan universities</p>
+        <p class="text-lg md:text-xl lg:text-2xl mt-2">Make informed decisions about your education journey</p>
         <a href="/reviews" class="mt-6 bg-white text-blue-600 px-6 py-3 rounded-lg text-lg md:text-xl font-semibold hover:bg-gray-200 transition">Browse Reviews</a>
     </div>
 </section>
 
-<!-- ✅ Featured Universities Section -->
+<!--  Featured Universities Section -->
 <section class="container mx-auto text-center mt-12 p-6 bg-white shadow-lg rounded-lg">
     <h2 class="text-3xl font-bold text-blue-600">Featured Universities</h2>
     <p class="text-gray-700 mt-4 text-lg">Explore top universities and read real student reviews.</p>
@@ -135,16 +135,13 @@
         </div>
 
     </div>
-
 </section>
-
-<!-- ✅ Footer Placeholder -->
-<footer class="bg-gray-800 text-white text-center py-4 mt-12">
-    <p class="text-sm">© 2025 UniGuideKE. All rights reserved.</p>
-</footer>
 
 <!-- Link JavaScript Properly at the bottom -->
 <script th:src="@{/js/navbar.js}"></script>
+
+<!--footer-->
+<div th:replace="~{fragments/footer :: footer}"></div>
 
 </body>
 </html>
