@@ -1,0 +1,56 @@
+private static final Map<String, University> universityData = new HashMap<>();
+
+2. What is Map<String, University>?
+Map<K, V> is an interface in Java that represents a collection of key-value pairs.
+String is the key, meaning universities will be accessed using a String (e.g., the university name or ID).
+University is the value, meaning each key corresponds to a University object.
+new HashMap<>() creates an empty HashMap, which is a specific implementation of Map that allows fast lookups.
+3. Why static?
+static means this variable belongs to the class itself rather than to instances (objects) of the class.
+This means universityData is shared across all instances of the class.
+4. Why final?
+final means you cannot reassign universityData to a different Map after it is initialized.
+However, you can still add, remove, and modify entries inside the Map.
+
+What Does a Map Do?
+A Map<K, V> (like HashMap) stores key-value pairs, and its main purpose is:
+✅ Fast lookups → Retrieve values quickly using a key
+✅ Efficient storage → Store data in an organized way
+✅ No duplicate keys → Each key is unique main methods put() and get()
+
+ Maps are mainly used for quick data retrieval, but you can also use them to filter by checking for specific keys/values.
+For example, if you have a list of universities stored in a Map<String, University>, you can:
+
+Get a university by name (map.get("KU"))
+Check if a university exists (map.containsKey("UoN"))--> for reference: universityData.put("ku", new University()
+
+You access data in a Map by retrieving the object stored as a value, then calling its fields or methods.
+
+Yes, exactly! You **access** data in a `Map` by retrieving the **object stored as a value**, then calling its **fields or methods**.
+
+### **Step-by-Step Breakdown**
+1. **You store a class object (`University`) in the Map as the value**
+   ```java
+   Map<String, University> universityData = new HashMap<>();
+   universityData.put("UoN", new University("University of Nairobi", "Nairobi"));
+   ```
+   - `"UoN"` is the **key**
+   - `new University("University of Nairobi", "Nairobi")` is the **value**
+
+2. **You retrieve the value (University object) using the key**
+   ```java
+   University uni = universityData.get("UoN");
+   ```
+
+3. **You access the object's fields/methods**
+   ```java
+   System.out.println(uni.getName()); // Outputs: University of Nairobi
+   System.out.println(uni.getLocation()); // Outputs: Nairobi
+   ```
+
+### **Summary**
+✔ **Maps store key-value pairs**
+✔ The value is an **object** (like `University`)
+✔ You retrieve the **object** using the key (`map.get(key)`)
+✔ You call the object's **methods or fields** (`obj.getField()` or `obj.method()`)
+

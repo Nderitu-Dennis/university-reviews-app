@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UniGuideKE</title>
+    <!-- global.css -->
+    <link rel="stylesheet" th:href="@{/css/global.css}">
     <script src="https://cdn.tailwindcss.com"></script>
 
 </head>
@@ -13,7 +15,7 @@
 <div th:replace="~{fragments/navbar :: nav}"></div>
 
 <!--Hero Section -->
-<section class="relative w-full h-[500px] md:h-[600px] lg:h-[700px]">
+<section id="university-cards" class="relative w-full h-[500px] md:h-[600px] lg:h-[700px]">
     <img th:src="@{/images/landing_page_pic.png}"
          alt="Students smiling in a university setting"
          class="absolute inset-0 w-full h-full object-cover opacity-80">
@@ -28,13 +30,14 @@
 </section>
 
 <!--  Featured Universities Section -->
-<section class="container mx-auto text-center mt-12 p-6 bg-white shadow-lg rounded-lg">
+<section id="universities-section" class="container mx-auto text-center mt-12 p-6 bg-white shadow-lg rounded-lg">
     <h2 class="text-3xl font-bold text-blue-600">Featured Universities</h2>
-    <p class="text-gray-700 mt-4 text-lg">Explore top universities and read real student reviews.</p>
+    <p class="text-gray-700 mt-4 text-lg">Explore top universities and read real student reviews</p>
 
-    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-6">
+    <div  class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-6">
 
         <!-- University Cards -->
+        <!--mmu--->
         <div class="bg-gray-100 rounded-lg shadow-lg overflow-hidden transition-transform duration-300 transform hover:scale-105 hover:shadow-xl">
             <img th:src="@{/images/logos/mmu-logo.jpeg}" alt="Multimedia University" class="w-20 h-20 mx-auto object-contain">
             <div class="p-3">
@@ -44,6 +47,7 @@
             </div>
         </div>
 
+        <!--ku-->
         <div class="bg-gray-100 rounded-lg shadow-lg overflow-hidden transition-transform duration-300 transform hover:scale-105 hover:shadow-xl">
             <img th:src="@{/images/logos/ku-logo.png}" alt="Kenyatta University" class="w-20 h-20 mx-auto object-contain">
             <div class="p-3">

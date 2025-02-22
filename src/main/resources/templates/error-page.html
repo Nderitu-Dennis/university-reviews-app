@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>University Not Found</title>
+  <!-- global.css -->
+  <link rel="stylesheet" th:href="@{/css/global.css}">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="flex items-center justify-center min-h-screen bg-gray-100">
+<!-- Include Navbar Fragment -->
+<div th:replace="~{fragments/navbar :: nav}"></div>
+
+<div class="max-w-md p-6 bg-white rounded-lg shadow-lg text-center">
+  <h2 class="text-2xl font-bold text-gray-800">Coming Soon!</h2>
+  <p class="mt-2 text-gray-600">This university profile is not available yet.</p>
+  <p class="mt-2 text-gray-600">Let us know if you’d like us to add it.</p>
+  <a href="mailto:uniguide@gmail.com" class="inline-block mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">Contact Us</a>
+</div>
+
+<!-- Link JavaScript Properly at the bottom -->
+<script th:src="@{/js/navbar.js}"></script>
+</body>
+</html>

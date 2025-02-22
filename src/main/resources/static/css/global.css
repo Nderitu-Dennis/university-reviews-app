@@ -1,0 +1,14 @@
+/* Enable smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Apply global background color */
+body {
+  background-color: #f3f4f6;
+}
+
+/* Style for all buttons */
+button {
+  transition: all 0.3s ease-in-out;
+}

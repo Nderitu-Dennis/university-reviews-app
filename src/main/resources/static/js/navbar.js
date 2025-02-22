@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function() {
             mobileMenu.classList.toggle("block");
         });
 
-        // ✅ Fix: Reset menu when resizing back to desktop size
+        //  Fix: Reset menu when resizing back to desktop size
         window.addEventListener("resize", function() {
             if (window.innerWidth >= 1024) { // Tailwind's lg breakpoint (1024px)
                 mobileMenu.classList.add("hidden");

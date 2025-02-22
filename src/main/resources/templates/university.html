@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${university.name} + ' - UniGuideKE'"></title>
+    <!-- global.css -->
+    <link rel="stylesheet" th:href="@{/css/global.css}">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 pt-18">
+
+<!--  Include Navbar -->
+<div th:replace="~{fragments/navbar :: nav}"></div>
+
+<!-- Hero Section -->
+<section class="relative w-full h-[500px] md:h-[600px] lg:h-[700px]">
+    <img th:src="@{/images/universities/{heroImage}(heroImage=${university.heroImage})}"
+         alt="University Image"
+         class="w-full h-full object-cover">
+</section>
+
+<!-- Two-column layout -->
+<div class="container mx-auto p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+
+    <!-- Left Column: Overview & Main Courses -->
+    <div class="flex flex-col gap-6">
+        <!--  Overview Section -->
+        <section class="bg-white shadow-lg rounded-lg p-6">
+            <h2 class="text-2xl font-bold text-blue-600">Overview</h2>
+            <p class="text-gray-700 mt-2" th:text="${university.description}"></p>
+        </section>
+
+        <!--  Main Courses Section -->
+        <section class="bg-white shadow-lg rounded-lg p-6">
+            <h2 class="text-2xl font-bold text-blue-600">Main Courses</h2>
+            <ul class="list-disc list-inside text-gray-700 mt-2">
+                <li th:each="course : ${university.courses}" th:text="${course}"></li>
+            </ul>
+        </section>
+    </div>
+
+    <!-- Right Column: Fun Fact, Location & Website -->
+    <div class="flex flex-col gap-6">
+        <!--  AI Fun Fact Section -->
+        <section class="bg-white shadow-lg rounded-lg p-6">
+            <h2 class="text-2xl font-bold text-blue-600">Did You Know?</h2>
+            <p class="text-gray-700 mt-2" th:text="${university.funFact}"></p>
+        </section>
+
+        <!--  Maps & Location Section -->
+        <section class="bg-white shadow-lg rounded-lg p-6">
+            <h2 class="text-2xl font-bold text-blue-600">Location</h2>
+            <iframe th:src="${university.mapsLink}" class="w-full h-64 mt-2 rounded-lg shadow"></iframe>
+        </section>
+
+        <!--  Official Website Section -->
+        <section class="bg-white shadow-lg rounded-lg p-6">
+            <a th:href="${university.website}" target="_blank" class="text-blue-600 hover:underline mt-2 block">
+                Visit official website
+            </a>
+        </section>
+    </div>
+
+</div>
+
+
+<!--  Reviews Section -->
+
+<!-- Link JavaScript Properly at the bottom -->
+<script th:src="@{/js/navbar.js}"></script>
+
+<!-- Include Footer -->
+<div th:replace="~{fragments/footer :: footer}"></div>
+
+</body>
+</html>
