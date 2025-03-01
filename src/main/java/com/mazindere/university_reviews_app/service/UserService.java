@@ -9,6 +9,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class UserService implements UserDetailsService {
 
@@ -28,5 +30,11 @@ public class UserService implements UserDetailsService {
         // Hash password before saving
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
+    }
+
+    //  Check if email already exists
+    public boolean emailExists(String email) {
+        Optional<User> existingUser = userRepository.findByEmail(email);
+        return existingUser.isPresent();
     }
 }

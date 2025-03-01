@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -78,6 +78,9 @@
 <p>
     you reviews here!
 </p>
+
+<p>Principal: <span sec:authentication="principal.name"></span></p>
+
 
 <!-- Link JavaScript Properly at the bottom -->
 <script

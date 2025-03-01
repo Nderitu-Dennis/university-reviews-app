@@ -1,5 +1,6 @@
 <!-- fragments/navbar.html -->
-<nav class="fixed top-0 left-0 w-full z-50 bg-blue-600 text-white p-4 shadow-md">
+<nav class="fixed top-0 left-0 w-full z-50 bg-blue-600 text-white p-4 shadow-md"
+     xmlns:sec="http://www.thymeleaf.org" xmlns:th="http://www.thymeleaf.org">
     <div class="container mx-auto flex justify-between items-center">
         <a href="/" class="text-2xl font-bold">UniGuideKE</a>
 
@@ -15,10 +16,20 @@
             <li><a href="#" class="hover:text-gray-300">Contact</a></li>
         </ul>
 
-        <!-- Login & Sign-Up Buttons -->
-        <div class="hidden lg:flex">
+        <!-- Login & Sign-Up (Shown only if NOT logged in) -->
+        <div class="hidden lg:flex" sec:authorize="!isAuthenticated()">
             <a href="/login" class="bg-white text-blue-600 px-4 py-2 rounded transition duration-300 hover:bg-gray-200">Login</a>
             <a href="/registration-form" class="bg-white text-blue-600 px-4 py-2 rounded ml-2 transition duration-300 hover:bg-gray-200">Sign Up</a>
+        </div>
+
+        <!-- Logout & User Info (Shown only if logged in) -->
+        <div class="hidden lg:flex items-center space-x-4" sec:authorize="isAuthenticated()">
+            <span class="text-white">Welcome, <span sec:authentication="principal.name"></span></span>
+            <form th:action="@{/logout}" method="post">
+                <button type="submit" class="bg-red-400 px-4 py-2 rounded transition duration-300 hover:bg-red-500">
+                    Logout
+                </button>
+            </form>
         </div>
     </div>
 
@@ -28,11 +39,26 @@
             <li><a href="#" class="hover:text-gray-300">Reviews</a></li>
             <li><a href="/index" class="hover:text-gray-300">Home</a></li>
             <li><a href="#" class="hover:text-gray-300">Contact</a></li>
-            <li>
+
+            <!-- Show Login/Signup if NOT logged in -->
+            <li sec:authorize="!isAuthenticated()">
                 <a href="/login" class="block bg-white text-blue-600 px-4 py-2 rounded transition duration-300 hover:bg-gray-200 text-center">Login</a>
             </li>
-            <li>
+            <li sec:authorize="!isAuthenticated()">
                 <a href="/registration-form" class="block bg-white text-blue-600 px-4 py-2 rounded mt-2 transition duration-300 hover:bg-gray-200 text-center">Sign Up</a>
+            </li>
+
+            <!-- Show Logout if logged in -->
+            <li sec:authorize="isAuthenticated()">
+                <span class="text-white">Welcome, <span sec:authentication="principal.name"></span></span>
+
+            </li>
+            <li sec:authorize="isAuthenticated()">
+                <form th:action="@{/logout}" method="post" class="text-center">
+                    <button type="submit" class="bg-red-400 px-4 py-2 rounded transition duration-300 hover:bg-red-500">
+                        Logout
+                    </button>
+                </form>
             </li>
         </ul>
     </div>
