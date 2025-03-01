@@ -21,10 +21,10 @@
          class="w-full h-full object-cover">
 </section>
 
-<!-- Two-column layout -->
-<div class="container mx-auto p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Two-column layout , over view section-->
+<div id="overview-section" class="container mx-auto p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
 
-    <!-- Left Column: Overview & Main Courses -->
+<!-- Left Column: Overview & Main Courses -->
     <div class="flex flex-col gap-6">
         <!--  Overview Section -->
         <section class="bg-white shadow-lg rounded-lg p-6">
@@ -52,27 +52,45 @@
         <!--  Maps & Location Section -->
         <section class="bg-white shadow-lg rounded-lg p-6">
             <h2 class="text-2xl font-bold text-blue-600">Location</h2>
-            <iframe th:src="${university.mapsLink}" class="w-full h-64 mt-2 rounded-lg shadow"></iframe>
+            <iframe th:src="${university.mapsLink}"
+                    class="w-full h-72 rounded-lg border-1 border-gray-300 shadow-md"
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
         </section>
 
         <!--  Official Website Section -->
         <section class="bg-white shadow-lg rounded-lg p-6">
             <a th:href="${university.website}" target="_blank" class="text-blue-600 hover:underline mt-2 block">
-                Visit official website
+                Visit official website ↗
             </a>
         </section>
     </div>
+
 
 </div>
 
 
 <!--  Reviews Section -->
+<h1 align="center">Reviews </h1>
+<h2 style="bold">more reviews</h2>
+<p>
+    you reviews here!
+</p>
 
 <!-- Link JavaScript Properly at the bottom -->
-<script th:src="@{/js/navbar.js}"></script>
+<script
+        th:src="@{/js/navbar.js}">
+</script>
+
+<!--3 sec delay in the hero section-->
+<script
+    th:src="@{/js/university-delay.js}">
+</script>
+
 
 <!-- Include Footer -->
 <div th:replace="~{fragments/footer :: footer}"></div>
-
 </body>
 </html>

@@ -39,7 +39,7 @@ public class UniversityController {
 
                 "Multimedia University has produced top-tier engineers and media professionals in Kenya.",
                 "https://www.mmu.ac.ke",
-                "https://maps.app.goo.gl/c9ouG9JcmjXBhLiCA"
+                "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.658655124362!2d36.76818919999999!3d-1.3814587!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f059a7c019c03%3A0x8092af97623fe89b!2sJQ99%2B98R%2C%20Nairobi!5e0!3m2!1sen!2ske!4v1740737475229!5m2!1sen!2ske"
         ));
 
         universityData.put("ku", new University(
@@ -49,7 +49,7 @@ public class UniversityController {
                 Arrays.asList("Business Administration", "Education", "Medicine"),
                 "Kenyatta University is among the largest universities in Kenya.",
                 "https://www.ku.ac.ke",
-                "https://maps.google.com?q=Kenyatta+University"
+                "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.969228824202!2d36.93409500959767!3d-1.182077698801638!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f3ff0f27b27f5%3A0xb0e3964cef8200a0!2sKenyatta%20University%2C%20Main%20Campus!5e0!3m2!1sen!2ske!4v1740806593380!5m2!1sen!2ske"
         ));
     }
 
