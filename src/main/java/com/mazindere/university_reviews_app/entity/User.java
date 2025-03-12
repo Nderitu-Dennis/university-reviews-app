@@ -21,6 +21,7 @@ import java.util.Collections;
 public class User implements UserDetails {
 
     @Id
+    @Column(name="user_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 

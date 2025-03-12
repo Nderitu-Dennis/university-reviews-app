@@ -1,18 +1,26 @@
 package com.mazindere.university_reviews_app.controller;
 
+import com.mazindere.university_reviews_app.entity.Review;
 import com.mazindere.university_reviews_app.model.University;
+import com.mazindere.university_reviews_app.service.ReviewService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Controller
 public class UniversityController {
 
-    private static final Map<String, University> universityData = new HashMap<>();
+    public static final Map<String, University> universityData = new HashMap<>();
+    private final ReviewService reviewService;
+
+    public UniversityController(ReviewService reviewService){
+        this.reviewService=reviewService;
+    }
 
     // Sample university data
     static {
@@ -59,6 +67,11 @@ public class UniversityController {
         if (university == null) {
             return "error-page"; // Handle unknown universities
         }
+
+        // Fetch reviews for this university
+        List<Review> reviews = reviewService.getReviewsByUniversity(uniName);
+        model.addAttribute("reviews", reviews); // Pass reviews to the Thymeleaf template
+        model.addAttribute("university", university);
         model.addAttribute("university", university);
         return "university"; // Loads the base template dynamically
     }

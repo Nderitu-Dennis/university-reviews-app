@@ -17,6 +17,4 @@ public class University {
     private String funFact;
     private String website;
     private String mapsLink;
-
-
 }

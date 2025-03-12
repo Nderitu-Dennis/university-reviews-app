@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title th:text="${university.name} + ' - UniGuideKE'"></title>
+    <title th:text="${uniName} + ' - UniGuideKE'"></title>
     <!-- global.css -->
     <link rel="stylesheet" th:href="@{/css/global.css}">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -21,7 +21,7 @@
          class="w-full h-full object-cover">
 </section>
 
-<!-- Two-column layout , over view section-->
+<!-- Two-column layout , overview section-->
 <div id="overview-section" class="container mx-auto p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
 
 <!-- Left Column: Overview & Main Courses -->
@@ -61,26 +61,78 @@
         </section>
 
         <!--  Official Website Section -->
-        <section class="bg-white shadow-lg rounded-lg p-6">
+        <section id="reviews-section" class="bg-white shadow-lg rounded-lg p-6">
             <a th:href="${university.website}" target="_blank" class="text-blue-600 hover:underline mt-2 block">
                 Visit official website ↗
             </a>
         </section>
     </div>
 
-
 </div>
 
+<!-- Review Section -->
+<div class="bg-blue-100 p-4 rounded-lg flex items-center justify-between shadow-md">
+    <h2 class="text-2xl font-bold text-blue-600">Reviews</h2>
+    <div class="flex-1 flex justify-center">
+        <button class="bg-blue-600 text-white px-5 py-2 rounded-lg shadow-md hover:bg-blue-700"
+                onclick="document.getElementById('reviewModal').classList.remove('hidden')">
+            + Write a Review
+        </button>
+    </div>
+</div>
 
-<!--  Reviews Section -->
-<h1 align="center">Reviews </h1>
-<h2 style="bold">more reviews</h2>
-<p>
-    you reviews here!
-</p>
+    <div th:if="${reviews != null and #lists.isEmpty(reviews)}" class="text-center mt-4">
+        <p class="text-gray-500">No reviews yet. Be the first to review!</p>
+    </div>
 
-<p>Principal: <span sec:authentication="principal.name"></span></p>
+    <!-- Reviews Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-4">
+        <div th:each="review : ${reviews}" class="bg-gray-50 border border-gray-200 p-4 rounded-lg shadow-md">
+            <h3 class="font-semibold text-lg text-gray-800" th:text="${review.title}"></h3>
+            <p class="text-gray-700 mt-2" th:text="${review.reviewText}"></p>
+            <p class="text-sm text-yellow-500 mt-2">⭐ <span th:text="${review.rating}"></span> stars</p>
+            <p class="text-xs text-gray-400 mt-2" th:text="${#dates.format(review.createdAt, 'yyyy-MM-dd')}"></p>
+        </div>
+    </div>
 
+</section>
+
+<!-- Review Modal (Hidden by default) -->
+<div id="reviewModal" class="fixed inset-0 bg-gray-900 bg-opacity-50 hidden flex items-center justify-center">
+    <div class="bg-white p-6 rounded-lg shadow-lg max-w-md w-full relative">
+        <!-- Close Button -->
+        <button class="absolute top-3 right-3 text-gray-500 hover:text-gray-700"
+                onclick="document.getElementById('reviewModal').classList.add('hidden')">
+            ✖
+        </button>
+
+        <h3 class="text-xl font-semibold text-gray-700 text-center">Submit Your Review</h3>
+        <form th:action="@{/reviews/submit}" method="post" class="mt-4">
+            <input type="hidden" name="reviewedUniversity" th:value="${uniName}">
+
+            <label class="block text-gray-700 font-medium">Title</label>
+            <input type="text" name="title" class="border p-2 w-full rounded-lg focus:outline-none focus:ring focus:ring-blue-300" required>
+
+            <label class="block text-gray-700 font-medium mt-3">Rating</label>
+            <select name="rating" class="border p-2 w-full rounded-lg focus:outline-none focus:ring focus:ring-yellow-300" required>
+                <option value="">Select Rating</option>
+                <option value="5">⭐️⭐️⭐️⭐️⭐️</option>
+                <option value="4">⭐️⭐️⭐️⭐️</option>
+                <option value="3">⭐️⭐️⭐️</option>
+                <option value="2">⭐️⭐️</option>
+                <option value="1">⭐️</option>
+            </select>
+
+            <label class="block text-gray-700 font-medium mt-3">Your Review</label>
+            <textarea name="reviewText" class="border p-2 w-full rounded-lg focus:outline-none focus:ring focus:ring-green-300" required></textarea>
+
+            <button type="submit" class="mt-4 bg-green-600 text-white px-5 py-2 rounded-lg w-full shadow-md hover:bg-green-700">
+                <a th:href="@{/display-reviews/${uniName}/reviews-section}"></a>
+                Submit Review
+            </button>
+        </form>
+    </div>
+</div>
 
 <!-- Link JavaScript Properly at the bottom -->
 <script

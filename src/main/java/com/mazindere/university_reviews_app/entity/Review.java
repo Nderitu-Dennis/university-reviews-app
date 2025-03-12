@@ -15,8 +15,12 @@ import lombok.NoArgsConstructor;
 public class Review {
 
     @Id
+    @Column(name="review_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+   @Column(name = "reviewed_university")
+    private String reviewedUniversity;//  name of the university's profile the review came from
 
     private String title;
     private Integer rating;
@@ -25,11 +29,15 @@ public class Review {
     private String reviewText;
 
     @Column(name = "created_at", updatable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    private java.util.Date createdAt = new java.util.Date();
+    @Temporal(TemporalType.DATE)
+ private java.util.Date createdAt = new java.util.Date();
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY) //many reviews can be linked to one user
+    @JoinColumn(name = "user_id", referencedColumnName = "user_id", nullable = false)
     private User user;
+
+    @Column(name="reviewer_name", nullable = false)
+    private String reviewerName;
+
 
 }
