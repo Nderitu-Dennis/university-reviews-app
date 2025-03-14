@@ -44,13 +44,50 @@ public class ReviewController {
         review.setReviewerName(user.getName());
 
         reviewService.saveReview(review, user.getId());
+
+        //fetch reviews again
         List<Review> reviews = reviewService.getReviewsByUniversity(reviewedUniversity);
         model.addAttribute("reviews", reviews);
 
         // Load the university again
         University university = UniversityController.universityData.get(reviewedUniversity);
+        model.addAttribute("university", university);
 
         return "redirect:/display-reviews/" + reviewedUniversity;   }
+
+    //edit a review
+    @PostMapping("/edit")
+    public String editReview(@RequestParam Long reviewId,
+                             @RequestParam String title,
+                             @RequestParam String reviewText,
+                             @RequestParam int rating,
+                             @RequestParam String reviewedUniversity,
+                             Model model) {
+
+        reviewService.updateReview(reviewId, title, reviewText, rating);
+
+        // Load the university and add it to the model
+        University university = UniversityController.universityData.get(reviewedUniversity);
+        model.addAttribute("university", university);
+
+        return "redirect:/display-reviews/" + reviewedUniversity;
+    }
+
+    //delete a review
+    @PostMapping("/delete")
+    public String deleteReview(@RequestParam Long reviewId,
+                               @RequestParam String reviewedUniversity,
+                               Model model) {
+        reviewService.deleteReview(reviewId);
+
+        //  Load the university and add it to the model
+        University university = UniversityController.universityData.get(reviewedUniversity);
+        model.addAttribute("university", university);
+
+        return "redirect:/display-reviews/" + reviewedUniversity;
+    }
+
+
 
 }
 

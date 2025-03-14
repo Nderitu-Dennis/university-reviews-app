@@ -19,6 +19,7 @@ public class ReviewService {
         this.userRepository = userRepository;
     }
 
+    //fetch reviews
        public List<Review> getReviewsByUniversity(String universityName) {
         System.out.println("retrieving a review from the db for: " + universityName);
         List<Review> reviews = reviewRepository.findByReviewedUniversityOrderByIdDesc(universityName);
@@ -32,6 +33,7 @@ public class ReviewService {
         return reviews;
     }
 
+    //save a review
     public Review saveReview(Review review, Long userId) {
         review.setUser(userRepository.findById(userId)
                 .orElseThrow(() -> new RuntimeException("User not found")));
@@ -43,5 +45,24 @@ public class ReviewService {
         System.out.println("****saving a review in the db...****");
         return reviewRepository.save(review);
     }
+
+    //edit a review
+    public Review updateReview(Long reviewId, String title, String reviewText, int rating) {
+        Review review = reviewRepository.findById(reviewId)
+                .orElseThrow(() -> new RuntimeException("Review not found"));
+
+        review.setTitle(title);
+        review.setReviewText(reviewText);
+        review.setRating(rating);
+
+        return reviewRepository.save(review);
+    }
+
+    //delete a review
+    public void deleteReview(Long reviewId) {
+        reviewRepository.deleteById(reviewId);
+    }
+
+
 
 }
