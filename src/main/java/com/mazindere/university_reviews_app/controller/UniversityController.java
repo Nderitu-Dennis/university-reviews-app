@@ -24,6 +24,7 @@ public class UniversityController {
 
     // Sample university data
     static {
+        //mmu
         universityData.put("mmu", new University(
                 "Multimedia University of Kenya",
                 "mmu-hero.jpeg",
@@ -50,6 +51,7 @@ public class UniversityController {
                 "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.658655124362!2d36.76818919999999!3d-1.3814587!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f059a7c019c03%3A0x8092af97623fe89b!2sJQ99%2B98R%2C%20Nairobi!5e0!3m2!1sen!2ske!4v1740737475229!5m2!1sen!2ske"
         ));
 
+        //ku
         universityData.put("ku", new University(
                 "Kenyatta University",
                 "ku-hero.jpg",
@@ -73,6 +75,34 @@ public class UniversityController {
                 "Kenyatta University is among the largest universities in Kenya.",
                 "https://www.ku.ac.ke",
                 "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.969228824202!2d36.93409500959767!3d-1.182077698801638!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f3ff0f27b27f5%3A0xb0e3964cef8200a0!2sKenyatta%20University%2C%20Main%20Campus!5e0!3m2!1sen!2ske!4v1740806593380!5m2!1sen!2ske"
+        ));
+
+        //uon
+        universityData.put("uon",new University(
+                "University of Nairobi",
+                "default-hero.png",
+                "The University of Nairobi is Kenya’s premier public university, established in 1970. It is renowned for its academic" +
+                        " excellence, research, and innovation, offering a wide range of undergraduate and postgraduate programs across various" +
+                        " disciplines, including medicine, engineering, business, law, and social sciences. With multiple campuses in Nairobi, UoN " +
+                        "serves a large and diverse student population. It has produced notable alumni in politics, business, and academia. The " +
+                        "university is also a hub for research and collaboration, contributing significantly to Kenya’s development.",
+
+                Arrays.asList("Faculty of Law",
+                        "Faculty of Education",
+                        "Faculty of Agriculture",
+                        "Faculty of The Built Environment & Design",
+                        "Faculty of Health Sciences",
+                        "Faculty of Health Sciences",
+                        "Faculty of Science & Technology",
+                        "Faculty of Engineering",
+                        "Faculty of Veterinary Medicine",
+                        "Faculty of Arts & Social Sciences",
+                        "Faculty of Business & Management Sciences"),
+
+                "funfact section of uon",
+                "https://www.uonbi.ac.ke/",
+                "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31910.569769189802!2d36.78006431083984!3d-1.2809709999999939!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f17a513a6231f%3A0x1ef6fdcc9f2d0cee!2sUniversity%20Of%20Nairobi%20-%20Main%20Campus!5e0!3m2!1sen!2ske!4v1742147923365!5m2!1sen!2ske"
+
         ));
     }
 
