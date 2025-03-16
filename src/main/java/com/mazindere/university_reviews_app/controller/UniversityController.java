@@ -104,6 +104,26 @@ public class UniversityController {
                 "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31910.569769189802!2d36.78006431083984!3d-1.2809709999999939!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f17a513a6231f%3A0x1ef6fdcc9f2d0cee!2sUniversity%20Of%20Nairobi%20-%20Main%20Campus!5e0!3m2!1sen!2ske!4v1742147923365!5m2!1sen!2ske"
 
         ));
+
+        //tuk
+        universityData.put("tuk", new University(
+                "Technical University of Kenya",
+                "default-hero.png",
+                "The Technical University of Kenya (TUK) is a leading institution specializing in technical and applied sciences education." +
+                        " Originally established as the Kenya Polytechnic in 1961, it gained university status in 2012. TUK offers programs" +
+                        " in engineering, technology, architecture, business, and applied sciences, emphasizing hands-on training and " +
+                        "innovation. Located in Nairobi, the university is known for producing skilled graduates who contribute to Kenya’s " +
+                        "industrial and technological growth. With a strong focus on research and practical learning, TUK plays a vital role" +
+                        " in bridging the gap between academia and industry.",
+
+                Arrays.asList("Faculty of Engineering and the Built Environment (FEBE)",
+                        "Faculty of Social Sciences and Technology (FSST) ",
+                        "Faculty of Applied Sciences and Technology (FAST) "),
+
+                "funfact section of TUK",
+                "https://tukenya.ac.ke/",
+                "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.8051498680165!2d36.822718773521935!3d-1.2912535356285455!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f10df5a23385d%3A0x15238033c2bcdc3b!2sThe%20Technical%20University%20Of%20Kenya!5e0!3m2!1sen!2ske!4v1742151956728!5m2!1sen!2ske"
+        ));
     }
 
     @GetMapping("/universities/{uniName}")
@@ -116,7 +136,6 @@ public class UniversityController {
         // Fetch reviews for this university
         List<Review> reviews = reviewService.getReviewsByUniversity(uniName);
         model.addAttribute("reviews", reviews); // Pass reviews to the Thymeleaf template
-        model.addAttribute("university", university);
         model.addAttribute("university", university);
         return "university"; // Loads the base template dynamically
     }
