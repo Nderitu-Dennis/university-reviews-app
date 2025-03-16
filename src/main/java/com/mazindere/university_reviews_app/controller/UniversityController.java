@@ -53,8 +53,23 @@ public class UniversityController {
         universityData.put("ku", new University(
                 "Kenyatta University",
                 "ku-hero.jpg",
-                "A leader in business, education, and health sciences.",
-                Arrays.asList("Business Administration", "Education", "Medicine"),
+                "Kenyatta University is a leading public university in Kenya, located along Thika Rd in Nairobi " +
+                        " and named after Kenya’s first president, it offers a wide range of undergraduate and postgraduate " +
+                        "programs across disciplines like Business, Medicine, engineering, and Education. KU is known for its modern " +
+                        "facilities, including a well-equipped library, a teaching and referral hospital, and an innovation hub. The " +
+                        "university fosters a vibrant student life with various clubs, sports, and cultural events. Recognized for academic" +
+                        " excellence and research, KU remains one of the top-ranked universities in Kenya and Africa.",
+
+                Arrays.asList("School of Agriculture & Environmental Sciences",
+                        "School of Business, Economics & Tourism",
+                        "School of Education & Lifelong Learning",
+                        "School of Engineering & Architecture",
+                        "School of Health Sciences",
+                        "School of Law, Arts & Social Sciences",
+                        "School of Pure & Applied Sciences",
+                        "Graduate School",
+                        "Digital School of Virtual & Open Learning"),
+
                 "Kenyatta University is among the largest universities in Kenya.",
                 "https://www.ku.ac.ke",
                 "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.969228824202!2d36.93409500959767!3d-1.182077698801638!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f3ff0f27b27f5%3A0xb0e3964cef8200a0!2sKenyatta%20University%2C%20Main%20Campus!5e0!3m2!1sen!2ske!4v1740806593380!5m2!1sen!2ske"
