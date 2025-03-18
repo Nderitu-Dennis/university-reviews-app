@@ -122,7 +122,7 @@ public class UniversityController {
 
                 "funfact section of TUK",
                 "https://tukenya.ac.ke/",
-                "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.8051498680165!2d36.822718773521935!3d-1.2912535356285455!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f10df5a23385d%3A0x15238033c2bcdc3b!2sThe%20Technical%20University%20Of%20Kenya!5e0!3m2!1sen!2ske!4v1742151956728!5m2!1sen!2ske"
+                "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.8051498680165!2d36.822718773521935!3d-1.2912535356285455!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f10df5a23385d%3A0x15238033c2bcdc3b!2sThe%20Techniecal%20University%20Of%20Kenya!5e0!3m2!1sen!2ske!4v1742151956728!5m2!1sen!2ske"
         ));
     }
 
