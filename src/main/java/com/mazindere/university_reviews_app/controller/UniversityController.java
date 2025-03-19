@@ -22,7 +22,7 @@ public class UniversityController {
         this.reviewService=reviewService;
     }
 
-    // Sample university data
+    // university data
     static {
         //mmu
         universityData.put("mmu", new University(
@@ -46,7 +46,6 @@ public class UniversityController {
                         "MMU TVET Centre",
                         "Board of Post graduate Studies"),
 
-                "Multimedia University has produced top-tier engineers and media professionals in Kenya.",
                 "https://www.mmu.ac.ke",
                 "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.658655124362!2d36.76818919999999!3d-1.3814587!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f059a7c019c03%3A0x8092af97623fe89b!2sJQ99%2B98R%2C%20Nairobi!5e0!3m2!1sen!2ske!4v1740737475229!5m2!1sen!2ske"
         ));
@@ -72,7 +71,6 @@ public class UniversityController {
                         "Graduate School",
                         "Digital School of Virtual & Open Learning"),
 
-                "Kenyatta University is among the largest universities in Kenya.",
                 "https://www.ku.ac.ke",
                 "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.969228824202!2d36.93409500959767!3d-1.182077698801638!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f3ff0f27b27f5%3A0xb0e3964cef8200a0!2sKenyatta%20University%2C%20Main%20Campus!5e0!3m2!1sen!2ske!4v1740806593380!5m2!1sen!2ske"
         ));
@@ -99,7 +97,6 @@ public class UniversityController {
                         "Faculty of Arts & Social Sciences",
                         "Faculty of Business & Management Sciences"),
 
-                "funfact section of uon",
                 "https://www.uonbi.ac.ke/",
                 "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31910.569769189802!2d36.78006431083984!3d-1.2809709999999939!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f17a513a6231f%3A0x1ef6fdcc9f2d0cee!2sUniversity%20Of%20Nairobi%20-%20Main%20Campus!5e0!3m2!1sen!2ske!4v1742147923365!5m2!1sen!2ske"
 
@@ -120,7 +117,6 @@ public class UniversityController {
                         "Faculty of Social Sciences and Technology (FSST) ",
                         "Faculty of Applied Sciences and Technology (FAST) "),
 
-                "funfact section of TUK",
                 "https://tukenya.ac.ke/",
                 "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.8051498680165!2d36.822718773521935!3d-1.2912535356285455!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f10df5a23385d%3A0x15238033c2bcdc3b!2sThe%20Techniecal%20University%20Of%20Kenya!5e0!3m2!1sen!2ske!4v1742151956728!5m2!1sen!2ske"
         ));

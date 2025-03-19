@@ -39,7 +39,7 @@ public class ReviewService {
                 .orElseThrow(() -> new RuntimeException("User not found")));
 
         if (review.getCreatedAt() == null) {
-            review.setCreatedAt(new Date()); // Ensure createdAt is set
+            review.setCreatedAt(new Date());
         }
 
         System.out.println("****saving a review in the db...****");

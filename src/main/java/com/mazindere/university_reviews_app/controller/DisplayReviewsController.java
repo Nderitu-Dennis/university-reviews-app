@@ -34,6 +34,6 @@ public class DisplayReviewsController {
         model.addAttribute("reviews", reviews);
         model.addAttribute("university", university);
 
-        return "university";  // This should be your template that displays reviews
+        return "university";  //  template that displays reviews
     }
 }

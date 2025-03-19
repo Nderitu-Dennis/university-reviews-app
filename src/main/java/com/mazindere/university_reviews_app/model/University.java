@@ -14,7 +14,6 @@ public class University {
     private String heroImage;
     private String description;
     private List<String> courses;
-    private String funFact;
     private String website;
     private String mapsLink;
 }
