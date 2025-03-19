@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -110,10 +110,13 @@
     <!--view  Reviews card-->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-4">
         <div th:each="review : ${reviews}" class="bg-gray-50 border border-gray-200 p-4 rounded-lg shadow-md">
-            <h3 class="font-semibold text-lg text-gray-800" th:text="${review.title}"></h3>
+            <div class="flex justify-between items-center">
+                <h3 class="font-semibold text-lg text-gray-800" th:text="${review.title}"></h3>
+                <span class="text-gray-500 text-sm">By: <span th:text="${review.reviewerName}"></span></span>
+            </div>
             <p class="text-gray-700 mt-2" th:text="${review.reviewText}"></p>
             <p class="text-sm text-yellow-500 mt-2">⭐ <span th:text="${review.rating}"></span> stars</p>
-            <p class="text-xs text-gray-400 mt-2" th:text="${#dates.format(review.createdAt, 'yyyy-MM-dd')}"></p>
+            <p class="text-xs text-gray-400 mt-2" th:text="${#dates.format(review.createdAt, 'dd-MM-yyyy')}"></p>
 
             <!-- Edit & Delete Buttons -->
             <div class="mt-3 flex justify-between">
@@ -163,7 +166,7 @@
         </button>
 
         <h3 class="text-xl font-semibold text-gray-700 text-center">Submit Your Review</h3>
-        <form th:action="@{/reviews/submit}" method="post" class="mt-4">
+        <form th:action="@{/reviews/submit}" method="post" class="mt-2">
             <input type="hidden" name="reviewedUniversity" th:value="${uniName}">
 
             <label class="block text-gray-700 font-medium">Title</label>
@@ -180,7 +183,26 @@
             </select>
 
             <label class="block text-gray-700 font-medium mt-3">Your Review</label>
-            <textarea name="reviewText" class="border p-2 w-full rounded-lg focus:outline-none focus:ring focus:ring-green-300" required></textarea>
+            <textarea name="reviewText"
+                      class="border p-2 w-full h-32 rounded-lg focus:outline-none focus:ring focus:ring-green-300"
+                      required
+                      onpaste="return false"
+                      ondrop="return false"
+                      minlength="30"
+                      placeholder="Share your experience (min 30 characters)"
+                      id="reviewText"></textarea>
+
+            <!-- Prevent form submission if input is less than 30 characters -->
+            <script>
+                document.querySelector("form").addEventListener("submit", function(event) {
+                    let reviewText = document.getElementById("reviewText").value.trim();
+
+                    if (reviewText.length < 30) {
+                        alert("Your review must be at least 30 characters.");
+                        event.preventDefault(); // Stop form submission
+                    }
+                });
+            </script>
 
             <button type="submit" class="mt-4 bg-green-600 text-white px-5 py-2 rounded-lg w-full shadow-md hover:bg-green-700">
                 <a th:href="@{/display-reviews/${uniName}/reviews-section}"></a>
@@ -212,7 +234,13 @@
                 <option value="1">⭐️</option>
             </select>
             <label class="block text-gray-700 font-medium mt-3">Your Review</label>
-            <textarea name="reviewText" id="editReviewText" class="border p-2 w-full rounded-lg focus:outline-none focus:ring focus:ring-green-300" required></textarea>
+            <textarea name="reviewText" id="editReviewText"
+                      class="border p-2 w-full h-32 rounded-lg focus:outline-none focus:ring focus:ring-green-300"
+                      required
+                      onpaste="return false"
+                      ondrop="return false">
+
+            </textarea>
             <button type="submit" class="mt-4 bg-blue-600 text-white px-5 py-2 rounded-lg w-full shadow-md hover:bg-blue-700">
                 Save Changes
             </button>

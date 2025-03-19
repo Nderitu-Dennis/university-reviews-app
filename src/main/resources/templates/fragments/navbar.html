@@ -25,6 +25,7 @@
         <!-- Logout & User Info (Shown only if logged in) -->
         <div class="hidden lg:flex items-center space-x-4" sec:authorize="isAuthenticated()">
             <span class="text-white">Welcome, <span sec:authentication="principal.name"></span></span>
+
             <form th:action="@{/logout}" method="post">
                 <button type="submit" class="bg-red-400 px-4 py-2 rounded transition duration-300 hover:bg-red-500">
                     Logout
