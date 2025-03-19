@@ -48,12 +48,15 @@
             <h2 class="text-2xl font-bold text-blue-600">Did You Know?</h2>
 
             <!-- Display Fun Fact -->
-            <p id="funFactText" class="text-gray-700 mt-2" th:text="${funFact}"></p>
+            <p id="funFactText"
+               class="text-gray-700 mt-2 mb-2 p-2 "
+               th:text="${funFact}">
+            </p>
 
             <!-- Generate Fun Fact Button -->
             <button onclick="fetchFunFact()"
                     class="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
-                Generate a Fun Fact about <span th:text="${university.name}"></span>
+                Discover an interesting Fact about <span th:text="${university.name}"></span>
             </button>
 
             <script>
@@ -65,7 +68,6 @@
                         .catch(error => console.error('Error fetching fun fact:', error));
                 }
             </script>
-
         </section>
 
         <!--  Maps & Location Section -->
