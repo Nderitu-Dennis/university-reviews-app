@@ -10,7 +10,7 @@ The University Reviews App is a full-stack web platform that allows users to rev
 
 * University Profile Pages with Details
 
-* AI-Generated Fun Facts about Institutions(not yet)
+* AI-Generated Fun Facts about Institutions-used Groq API
  
 * Google Maps Integration for Locations
 
