@@ -16,14 +16,17 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/registration-form","/register", "/login").permitAll() // Public pages
+                        .requestMatchers("/","/index","/registration-form","/register", "/login","/universities/**").permitAll() // Public pages
+                        .requestMatchers("/reviews/**").authenticated()
                         .requestMatchers("/admin/**").hasAuthority("ADMIN") // Admin-only pages
+                        .requestMatchers("/css/**","/js/**","/images/**").permitAll()
+                        .requestMatchers("/funfact/**").permitAll()
                         .anyRequest().authenticated() // Secure all other pages
                 )
                 .formLogin(login -> login
                         .loginPage("/login") // Custom login page
                         .defaultSuccessUrl("/index", true) // Redirect after login
-                        .permitAll()
+                        .permitAll() //anyone can access login page
                 )
                 .logout(logout -> logout
                         .logoutUrl("/logout")

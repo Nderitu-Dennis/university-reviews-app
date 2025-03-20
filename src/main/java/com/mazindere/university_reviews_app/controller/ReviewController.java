@@ -33,6 +33,10 @@ public class ReviewController {
                                @RequestParam String reviewText,
                                @AuthenticationPrincipal UserDetails userDetails,
                                Model model) {
+        if(userDetails == null){
+            return "redirect:/login";
+        }
+
         User user = userService.findByEmail(userDetails.getUsername());
 
         Review review = new Review();

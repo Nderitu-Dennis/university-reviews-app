@@ -96,10 +96,21 @@
 <div class="bg-blue-100 p-4 rounded-lg flex items-center justify-between shadow-md">
     <h2 class="text-2xl font-bold text-blue-600">Reviews</h2>
     <div class="flex-1 flex justify-center">
-        <button class="bg-blue-600 text-white px-5 py-2 rounded-lg shadow-md hover:bg-blue-700"
-                onclick="document.getElementById('reviewModal').classList.remove('hidden')">
-            + Write a Review
-        </button>
+        <th:block sec:authorize="isAuthenticated()">
+            <!-- Show the button if the user is logged in -->
+            <button class="bg-blue-600 text-white px-5 py-2 rounded-lg shadow-md hover:bg-blue-700"
+                    onclick="document.getElementById('reviewModal').classList.remove('hidden')">
+                + Write a Review
+            </button>
+        </th:block>
+
+        <th:block sec:authorize="!isAuthenticated()">
+            <!-- Redirect to login if the user is not logged in -->
+            <a th:href="@{/login}" class="bg-blue-600 text-white px-5 py-2 rounded-lg shadow-md hover:bg-blue-700">
+                + Write a Review
+            </a>
+        </th:block>
+
     </div>
 </div>
 
