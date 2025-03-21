@@ -132,24 +132,26 @@
             <!-- Edit & Delete Buttons -->
             <div class="mt-3 flex justify-between">
 
-                <!-- Edit Button -->
-                <button class="bg-blue-500 text-white px-3 py-1 rounded shadow-md hover:bg-blue-700"
-                        th:attr="data-review-id=${review.id},
-                             data-title=${review.title},
-                             data-review-text=${review.reviewText},
-                             data-rating=${review.rating}"
-                        onclick="openEditModal(this)">
-                    Edit
-                </button>
-
-                <!-- Delete Button -->
-                <form th:action="@{/reviews/delete}" method="post" onsubmit="return confirmDelete(event)">
-                    <input type="hidden" name="reviewId" th:value="${review.id}" />
-                    <input type="hidden" name="reviewedUniversity" th:value="${uniName}" />
-                    <button type="submit" class="bg-gray-500 text-white px-3 py-1 rounded shadow-md hover:bg-gray-600">
-                        Delete
+                <th:block th:if="${#authorization.expression('isAuthenticated()')}"> <!--hide edit & delete btns if a user is not logged in-->
+                    <!-- Edit Button -->
+                    <button class="bg-blue-500 text-white px-3 py-1 rounded shadow-md hover:bg-blue-700"
+                            th:attr="data-review-id=${review.id},
+                     data-title=${review.title},
+                     data-review-text=${review.reviewText},
+                     data-rating=${review.rating}"
+                            onclick="openEditModal(this)">
+                        Edit
                     </button>
-                </form>
+
+                    <!-- Delete Button -->
+                    <form th:action="@{/reviews/delete}" method="post" onsubmit="return confirmDelete(event)">
+                        <input type="hidden" name="reviewId" th:value="${review.id}" />
+                        <input type="hidden" name="reviewedUniversity" th:value="${uniName}" />
+                        <button type="submit" class="bg-gray-500 text-white px-3 py-1 rounded shadow-md hover:bg-gray-600">
+                            Delete
+                        </button>
+                    </form>
+                </th:block>
 
                 <!--confirm delete-->
                 <script>
@@ -177,7 +179,7 @@
         </button>
 
         <h3 class="text-xl font-semibold text-gray-700 text-center">Submit Your Review</h3>
-        <form th:action="@{/reviews/submit}" method="post" class="mt-2">
+        <form th:action="@{/reviews/submit}" method="post" class="review-form mt-2">
             <input type="hidden" name="reviewedUniversity" th:value="${uniName}">
 
             <label class="block text-gray-700 font-medium">Title</label>
@@ -205,14 +207,15 @@
 
             <!-- Prevent form submission if input is less than 30 characters -->
             <script>
-                document.querySelector("form").addEventListener("submit", function(event) {
-                    let reviewText = document.getElementById("reviewText").value.trim();
+                document.querySelector(".review-form").addEventListener("submit", function(event) {
+                 let reviewText = document.getElementById("reviewText").value.trim();
 
-                    if (reviewText.length < 30) {
-                        alert("Your review must be at least 30 characters.");
-                        event.preventDefault(); // Stop form submission
-                    }
-                });
+                 if (reviewText.length < 30) {
+                     alert("Your review must be at least 30 characters.");
+                     event.preventDefault(); // Stop form submission
+                 }
+             });
+
             </script>
 
             <button type="submit" class="mt-4 bg-green-600 text-white px-5 py-2 rounded-lg w-full shadow-md hover:bg-green-700">
