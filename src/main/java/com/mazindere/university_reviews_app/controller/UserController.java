@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.Arrays;
 import java.util.List;
@@ -39,37 +40,32 @@ public class UserController {
 
     // Handle form submission
     @PostMapping("/register")
-    public String registerUser(@ModelAttribute("user") User user, Model model) {
+    public String registerUser(@ModelAttribute("user") User user, RedirectAttributes redirectAttributes) {
         if (userService.emailExists(user.getEmail())) {
-            model.addAttribute("error", "Email already exists!"); // Send error message to Thymeleaf
-
-            List<UserType> userTypes = Arrays.asList(UserType.STUDENT, UserType.ALUMNI, UserType.PROSPECTIVE);
-            model.addAttribute("userTypes", userTypes);
-
-            return "register"; // Stay on registration page
+            redirectAttributes.addFlashAttribute("error", "Email already exists!"); // Pass error message
+            return "redirect:/registration-form"; // Redirects back to the registration page
         }
 
-        user.setRole(UserRole.USER); // Assign default role
+        // Assign default role before saving
+        user.setRole(UserRole.USER);
         userService.saveUser(user);
 
-        // Auto-login after successful signup
-        UserDetails userDetails = userService.loadUserByUsername(user.getEmail());
-        UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(
-                userDetails, user.getPassword(), userDetails.getAuthorities());
+        // Store success message using FlashAttributes
+        redirectAttributes.addFlashAttribute("success", "Registration successful! You can now log in.");
 
-        SecurityContextHolder.getContext().setAuthentication(auth); // Set authentication
-        return "redirect:/index"; // User is now logged in when redirected
+        return "redirect:/login"; // Redirect to login after successful registration
     }
 
 
     @GetMapping("/login")
-    public String showLoginForm(Model model, @RequestParam(value = "error", required = false) String error,
+    public String showLoginForm(Model model,
+                                @RequestParam(value = "error", required = false) String error,
                                 @RequestParam(value = "success", required = false) String success) {
         if (error != null) {
             model.addAttribute("error", "Invalid email or password!");
         }
         if (success != null) {
-            model.addAttribute("success", "Registration successful! You can now log in.");
+            model.addAttribute("success", "success");
         }
         return "login";
     }
