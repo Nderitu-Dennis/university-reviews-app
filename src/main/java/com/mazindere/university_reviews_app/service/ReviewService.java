@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ReviewService {
@@ -46,6 +47,11 @@ public class ReviewService {
         return reviewRepository.save(review);
     }
 
+    public Review getReviewById(Long id) {
+        Optional<Review> review = reviewRepository.findById(id);
+        return review.orElse(null); // Return review if found, otherwise return null
+    }
+
     //edit a review
     public Review updateReview(Long reviewId, String title, String reviewText, int rating) {
         Review review = reviewRepository.findById(reviewId)
@@ -62,7 +68,5 @@ public class ReviewService {
     public void deleteReview(Long reviewId) {
         reviewRepository.deleteById(reviewId);
     }
-
-
 
 }
