@@ -9,14 +9,14 @@
             ☰
         </button>
 
-        <!-- Navbar Links (Hidden on Mobile, Shown on Desktop) -->
+        <!-- Navbar Links -Desktop) -->
         <ul class="hidden lg:flex space-x-4" id="menu">
-            <li><a href="/#universities-section" class="hover:text-gray-300">Reviews</a></li>
+            <li><a href="#universities-section" class="hover:text-gray-300">Reviews</a></li>
             <li><a href="/index" class="hover:text-gray-300">Home</a></li>
             <li><a href="#" class="hover:text-gray-300">Contact</a></li>
         </ul>
 
-        <!-- Login & Sign-Up (Shown only if NOT logged in) -->
+        <!-- Login & Sign-Up (Shown only if user NOT logged in) -->
         <div class="hidden lg:flex" sec:authorize="!isAuthenticated()">
             <a href="/login" class="bg-white text-blue-600 px-4 py-2 rounded transition duration-300 hover:bg-gray-200">Login</a>
             <a href="/registration-form" class="bg-white text-blue-600 px-4 py-2 rounded ml-2 transition duration-300 hover:bg-gray-200">Sign Up</a>
@@ -24,8 +24,10 @@
 
         <!-- Logout & User Info (Shown only if logged in) -->
         <div class="hidden lg:flex items-center space-x-4" sec:authorize="isAuthenticated()">
-            <span class="text-white">Welcome, <span sec:authentication="principal.name"></span></span>
-
+            <!-- Ensure authentication check only applies when the user is NOT anonymous -->
+            <span class="text-white" th:if="${#authorization.expression('isAuthenticated()')}">
+                Welcome, <span sec:authentication="principal.name"></span>
+            </span>
             <form th:action="@{/logout}" method="post">
                 <button type="submit" class="bg-red-400 px-4 py-2 rounded transition duration-300 hover:bg-red-500">
                     Logout
@@ -37,7 +39,7 @@
     <!-- Mobile Dropdown Menu -->
     <div class="hidden bg-blue-700 p-4 mt-2" id="mobile-menu">
         <ul class="flex flex-col space-y-2">
-            <li><a href="#" class="hover:text-gray-300">Reviews</a></li>
+            <li><a href="#universities-section" class="hover:text-gray-300">Reviews</a></li>
             <li><a href="/index" class="hover:text-gray-300">Home</a></li>
             <li><a href="#" class="hover:text-gray-300">Contact</a></li>
 
@@ -51,7 +53,10 @@
 
             <!-- Show Logout if logged in -->
             <li sec:authorize="isAuthenticated()">
-                <span class="text-white">Welcome, <span sec:authentication="principal.name"></span></span>
+                <!-- Ensure authentication check only applies when the user is NOT anonymous -->
+                <span class="text-white" th:if="${#authorization.expression('isAuthenticated()')}">
+                     Welcome, <span sec:authentication="principal.name"></span>
+                </span>
             </li>
 
             <li sec:authorize="isAuthenticated()">

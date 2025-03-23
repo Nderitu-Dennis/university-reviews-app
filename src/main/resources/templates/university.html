@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="_csrf" th:if="${_csrf != null}" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:if="${_csrf != null}" th:content="${_csrf.headerName}"/>
     <title th:text="${uniName} + ' - UniGuideKE'"></title>
     <!-- global.css -->
     <link rel="stylesheet" th:href="@{css/global.css}">
@@ -104,15 +106,32 @@
             </button>
         </th:block>
 
+            <!-- Show a message for unauthenticated users -->
         <th:block sec:authorize="!isAuthenticated()">
-            <!-- Redirect to login if the user is not logged in -->
-            <a th:href="@{/login}" class="bg-blue-600 text-white px-5 py-2 rounded-lg shadow-md hover:bg-blue-700">
+            <!-- Show the same button, but handle it differently for unauthenticated users -->
+            <button class="bg-blue-600 text-white px-5 py-2 rounded-lg shadow-md hover:bg-blue-700"
+                    onclick="document.getElementById('loginPrompt').classList.remove('hidden')">
                 + Write a Review
-            </a>
+            </button>
         </th:block>
-
     </div>
 </div>
+
+    <!-- Modal for login prompt -->
+    <div id="loginPrompt" class="hidden fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+        <div class="bg-white p-6 rounded-lg shadow-lg">
+            <p class="text-red-700 text-center">You must log in to submit a review</p>
+            <div class="mt-4 flex justify-center">
+                <a th:href="@{/login}" class="bg-blue-600 text-white px-5 py-2 rounded-lg shadow-md hover:bg-blue-700">
+                    Log In
+                </a>
+            </div>
+            <button class="mt-4 block mx-auto text-gray-500 hover:text-gray-700"
+                    onclick="document.getElementById('loginPrompt').classList.add('hidden')">
+                Close
+            </button>
+        </div>
+    </div>
 
     <div th:if="${reviews != null and #lists.isEmpty(reviews)}" class="text-center mt-4">
         <p class="text-gray-500">No reviews yet. Be the first to review!</p>
@@ -179,8 +198,13 @@
         </button>
 
         <h3 class="text-xl font-semibold text-gray-700 text-center">Submit Your Review</h3>
+
+        <th:block sec:authorize="isAuthenticated()">
         <form th:action="@{/reviews/submit}" method="post" class="review-form mt-2">
             <input type="hidden" name="reviewedUniversity" th:value="${uniName}">
+
+            <!-- Add CSRF token explicitly -->
+            <input type="hidden" th:if="${_csrf != null}" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
 
             <label class="block text-gray-700 font-medium">Title</label>
             <input type="text" name="title" class="border p-2 w-full rounded-lg focus:outline-none focus:ring focus:ring-blue-300" required>
@@ -219,10 +243,11 @@
             </script>
 
             <button type="submit" class="mt-4 bg-green-600 text-white px-5 py-2 rounded-lg w-full shadow-md hover:bg-green-700">
-                <a th:href="@{/display-reviews/${uniName}/reviews-section}"></a>
                 Submit Review
             </button>
         </form>
+        </th:block>
+
     </div>
 </div>
 
@@ -236,6 +261,9 @@
         <form id="editReviewForm" method="post" th:action="@{/reviews/edit}">
             <input type="hidden" name="reviewId" id="editReviewId">
             <input type="hidden" name="reviewedUniversity" th:value="${uniName}" />
+
+            <!-- Add CSRF token explicitly -->
+            <input type="hidden" th:if="${_csrf != null}" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
 
             <label class="block text-gray-700 font-medium">Title</label>
             <input type="text" name="title" id="editTitle" class="border p-2 w-full rounded-lg focus:outline-none focus:ring focus:ring-blue-300" required>

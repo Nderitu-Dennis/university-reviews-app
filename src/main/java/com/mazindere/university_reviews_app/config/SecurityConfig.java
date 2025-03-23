@@ -8,6 +8,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
 @Configuration
 public class SecurityConfig {
@@ -17,7 +18,7 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/","/index","/registration-form","/register", "/login","/universities/**").permitAll() // Public pages
-                        .requestMatchers("/reviews/**").authenticated()
+                        .requestMatchers("/reviews/**").permitAll()
                         .requestMatchers("/admin/**").hasAuthority("ADMIN") // Admin-only pages
                         .requestMatchers("/css/**","/js/**","/images/**").permitAll()
                         .requestMatchers("/funfact/**").permitAll()
@@ -32,7 +33,11 @@ public class SecurityConfig {
                         .logoutUrl("/logout")
                         .logoutSuccessUrl("/login?logout")
                         .permitAll()
-                );
+                )
+                .csrf(csrf -> csrf
+                                .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
+        );
+
 
         return http.build();
     }

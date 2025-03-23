@@ -8,7 +8,7 @@ public class UniversityReviewsAppApplication {
 	//todo check on the user type -admin and user -to be checked later not now
 	//todo -shld navbar be also in sign up and log in pages?
 	//todo-make the hero section in university to delay-js not working
-	//todo-a place to hide/unhide password
+
 	//todo-global.css not working
 	//todo-forgot -password-later cz we;ll use email-when a review posted an email sent
 
