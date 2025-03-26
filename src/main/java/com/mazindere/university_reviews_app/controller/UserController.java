@@ -89,6 +89,10 @@ public class UserController {
             }
         }
 
+        // Only store redirectUrl if it starts with "/universities/"
+        if (redirectUrl == null || !redirectUrl.startsWith("/universities/")) {
+            redirectUrl = "/index"; // Default redirect for non-university pages
+        }
 
         model.addAttribute("redirectUrl", redirectUrl); // Store the redirect URL
 
