@@ -173,6 +173,33 @@ public class UniversityController {
                 "https://www.egerton.ac.ke/",
                 "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2042743.819309178!2d33.626381193749985!3d-0.37245269999997554!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182987e88ed4a835%3A0xd17ab41538bef8f6!2sEgerton%20University%20-%20Njoro!5e0!3m2!1sen!2ske!4v1743017189439!5m2!1sen!2ske"
         ));
+
+        //jkuat
+        universityData.put("jkuat", new University(
+                "JKUAT",
+                "default-hero.png",
+                "Jomo Kenyatta University of Agriculture and Technology (JKUAT) is a leading public university, specializing in" +
+                        " technology, engineering, agriculture, and business studies. Established in 1981 as a middle-level college and " +
+                        "later chartered as a university in 1994, it is known for its strong focus on innovation, research, and " +
+                        "entrepreneurship. Its main campus is in Juja, Kiambu County, with several satellite campuses across Kenya. The " +
+                        "university has played a key role in advancing science and technology in the country and is recognized for " +
+                        "producing top professionals in various fields.",
+
+                //todo-check this in their slow website
+                Arrays.asList("School of Computing & Information Technology",
+                        "School of Engineering",
+                        "School of Business",
+                        "School of Architecture and Building Sciences",
+                        "School of Biomedical Sciences",
+                        "School of Nursing",
+                        "School of Agriculture and Environmental Sciences",
+                        "School of Food and Nutrition Sciences",
+                        "School of Law",
+                        "School of Communication and Development Studies"),
+
+                "https://www.jkuat.ac.ke/",
+                "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.094529379069!2d37.00911437356301!3d-1.0913755354412156!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f46276c2d9021%3A0xbefd8e40071d3352!2sJomo%20Kenyatta%20University%20Of%20Agriculture%20And%20Technology!5e0!3m2!1sen!2ske!4v1743020736092!5m2!1sen!2ske"
+        ));
     }
 
     @GetMapping("/universities/{uniName}")
