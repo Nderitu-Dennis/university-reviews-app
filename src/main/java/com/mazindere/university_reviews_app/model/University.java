@@ -9,7 +9,8 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class University {
+public class
+University {
     private String name;
     private String heroImage;
     private String description;

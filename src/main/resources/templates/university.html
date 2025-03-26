@@ -99,7 +99,6 @@
     <h2 class="text-2xl font-bold text-blue-600">Reviews</h2>
     <div class="flex-1 flex justify-center">
         <th:block sec:authorize="isAuthenticated()">
-            <!-- Show the button if the user is logged in -->
             <button class="bg-blue-600 text-white px-5 py-2 rounded-lg shadow-md hover:bg-blue-700"
                     onclick="document.getElementById('reviewModal').classList.remove('hidden')">
                 + Write a Review
@@ -122,7 +121,8 @@
         <div class="bg-white p-6 rounded-lg shadow-lg">
             <p class="text-red-700 text-center">You must log in to submit a review</p>
             <div class="mt-4 flex justify-center">
-                <a th:href="@{/login}" class="bg-blue-600 text-white px-5 py-2 rounded-lg shadow-md hover:bg-blue-700">
+                <a th:href="@{/login(redirectUrl=${currentRequestUri})}"
+                   class="bg-blue-600 text-white px-5 py-2 rounded-lg shadow-md hover:bg-blue-700">
                     Log In
                 </a>
             </div>

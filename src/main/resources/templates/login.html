@@ -22,6 +22,7 @@
 
 
     <form th:action="@{/login}" method="post" class="space-y-4">
+        <input type="hidden" name="redirectUrl" th:value="${redirectUrl}">
         <div>
             <label class="block text-base">Email:</label>
             <input type="email" name="username" required

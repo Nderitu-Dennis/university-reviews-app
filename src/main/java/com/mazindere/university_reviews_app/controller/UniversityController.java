@@ -3,6 +3,7 @@ package com.mazindere.university_reviews_app.controller;
 import com.mazindere.university_reviews_app.entity.Review;
 import com.mazindere.university_reviews_app.model.University;
 import com.mazindere.university_reviews_app.service.ReviewService;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -120,10 +121,35 @@ public class UniversityController {
                 "https://tukenya.ac.ke/",
                 "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.8051498680165!2d36.822718773521935!3d-1.2912535356285455!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f10df5a23385d%3A0x15238033c2bcdc3b!2sThe%20Techniecal%20University%20Of%20Kenya!5e0!3m2!1sen!2ske!4v1742151956728!5m2!1sen!2ske"
         ));
+
+        //chuka
+        universityData.put("chuka", new University(
+                "Chuka University",
+                "default-hero.png",
+                "Chuka University is a public institution located in Ndagani town, Tharaka Nithi County. It offers diverse programs in" +
+                        " agriculture, business, education, engineering, and technology. Established in 2004 as a constituent college of " +
+                        "Egerton University, it attained full university status in 2013. It is known for its scenic environment," +
+                        " modern facilities, and commitment to academic excellence. With a strong focus on research, innovation, and practical" +
+                        " learning, Chuka University plays a key role in advancing education and development in the region",
+
+                Arrays.asList("School of Nursing & Public Health",
+                        "Faculty of Science and Technology",
+                        "Faculty of Engineering",
+                        "Faculty of Business Studies",
+                        "Faculty of Education & Resources Development",
+                        "Faculty of Agriculture",
+                        "Faculty of Environment Studies & Resources Development",
+                        "Faculty of Humanities & Social Sciences",
+                        "School of Law"),
+
+                "https://www.chuka.ac.ke/",
+                "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.7562716372413!2d37.65490107355892!3d-0.3195420353306585!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1827b9ef575b1ab7%3A0xfa2913c1ffafb42a!2sChuka%20University!5e0!3m2!1sen!2ske!4v1742972180066!5m2!1sen!2ske"
+        ));
     }
 
     @GetMapping("/universities/{uniName}")
-    public String getUniversity(@PathVariable String uniName, Model model) {
+    public String getUniversity(@PathVariable String uniName, Model model, HttpServletRequest request) {
+        model.addAttribute("currentRequestUri", request.getRequestURI());
         University university = universityData.get(uniName);
         if (university == null) {
             return "error-page"; // Handle unknown universities
