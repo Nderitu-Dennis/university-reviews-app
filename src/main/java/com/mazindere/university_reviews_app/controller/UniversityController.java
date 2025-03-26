@@ -130,7 +130,7 @@ public class UniversityController {
                         " agriculture, business, education, engineering, and technology. Established in 2004 as a constituent college of " +
                         "Egerton University, it attained full university status in 2013. It is known for its scenic environment," +
                         " modern facilities, and commitment to academic excellence. With a strong focus on research, innovation, and practical" +
-                        " learning, Chuka University plays a key role in advancing education and development in the region",
+                        " learning, Chuka University plays a key role in advancing education and development in the region.",
 
                 Arrays.asList("School of Nursing & Public Health",
                         "Faculty of Science and Technology",
@@ -144,6 +144,34 @@ public class UniversityController {
 
                 "https://www.chuka.ac.ke/",
                 "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.7562716372413!2d37.65490107355892!3d-0.3195420353306585!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1827b9ef575b1ab7%3A0xfa2913c1ffafb42a!2sChuka%20University!5e0!3m2!1sen!2ske!4v1742972180066!5m2!1sen!2ske"
+        ));
+
+
+        //egerton
+        universityData.put("egerton", new University(
+                "Egerton University",
+                "default-hero.png",
+                "Egerton University, established in 1939 and chartered in 1987, is a leading public university in Kenya, renowned" +
+                        " for its strong emphasis on agriculture, engineering, business, and education. Its main campus is in Njoro, Nakuru" +
+                        " County, with a history of excellence in agricultural research and practical learning. The university is known for" +
+                        " producing top graduates and contributing significantly to Kenya’s education and agricultural sectors. Guided by " +
+                        "the motto \"Transforming Lives through Quality Education,\" it remains a key institution in higher learning" +
+                        " and innovation.",
+
+                Arrays.asList("Faculty of Agriculture",
+                        "Faculty of Commerce",
+                        "Faculty of Health Sciences",
+                        "Faculty of Science",
+                        "Faculty of Education & Community Studies",
+                        "Faculty of Engineering & Technology",
+                        "Faculty of Arts & Social Sciences",
+                        "Institute of Gender, Women & Development Studies",
+                        "Faculty of Environment & Resources Development",
+                        "Faculty of Law",
+                        "Faculty of Veterinary Medicine & Surgery"),
+
+                "https://www.egerton.ac.ke/",
+                "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2042743.819309178!2d33.626381193749985!3d-0.37245269999997554!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182987e88ed4a835%3A0xd17ab41538bef8f6!2sEgerton%20University%20-%20Njoro!5e0!3m2!1sen!2ske!4v1743017189439!5m2!1sen!2ske"
         ));
     }
 

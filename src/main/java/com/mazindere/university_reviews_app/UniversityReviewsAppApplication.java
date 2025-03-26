@@ -11,6 +11,7 @@ public class UniversityReviewsAppApplication {
 
 	//todo-global.css not working
 	//todo-forgot -password-later cz we;ll use email-when a review posted an email sent
+	//todo-remove the uni cards at index and use a loop with info being fed from university controller
 
 	public static void main(String[] args) {
 		SpringApplication.run(UniversityReviewsAppApplication.class, args);
