@@ -200,6 +200,36 @@ public class UniversityController {
                 "https://www.jkuat.ac.ke/",
                 "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.094529379069!2d37.00911437356301!3d-1.0913755354412156!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f46276c2d9021%3A0xbefd8e40071d3352!2sJomo%20Kenyatta%20University%20Of%20Agriculture%20And%20Technology!5e0!3m2!1sen!2ske!4v1743020736092!5m2!1sen!2ske"
         ));
+
+        //maseno
+        universityData.put("maseno", new University(
+                "Maseno University",
+                "default-hero.png",
+                "Maseno University is known for its strong programs in IT, business, education, " +
+                        "medicine, and environmental sciences. Established in 1991 and chartered in 2000, it is the only university in " +
+                        "Kenya located along the Equator. The main campus is in Maseno, Kisumu County, with additional campuses in Kisumu " +
+                        "City. Maseno is recognized for its blended learning approach, integrating e-learning and traditional teaching" +
+                        " methods. With a commitment to academic excellence and innovation, the university continues to produce top" +
+                        " graduates in various fields",
+
+                Arrays.asList("School of Agriculture, Food Security & Environmental Sciences",
+                        "School of Arts & Social Sciences",
+                        "School of Business & Economics",
+                        "School of Computing & Informatics",
+                        "School of Education",
+                        "School of Development & Strategic Studies",
+                        "School of Planning & Architecture",
+                        "School of Pharmacy",
+                        "School of Medicine",
+                        "School of Public Health & Community Development",
+                        "School of Nursing",
+                        "School of Physical & Biological Sciences",
+                        "School of Mathematics, Statistics & Actuarial Sciences",
+                        "Ecampus"),
+
+                "https://www.maseno.ac.ke/",
+                "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.818295453135!2d34.59480507316589!3d-0.006399906690910717!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182aa97bdc7a35f1%3A0x20276056a9ac87c9!2sMaseno%20University!5e0!3m2!1sen!2ske!4v1743021662064!5m2!1sen!2ske"
+        ));
     }
 
     @GetMapping("/universities/{uniName}")
