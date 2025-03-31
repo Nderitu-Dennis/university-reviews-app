@@ -17,7 +17,7 @@
 <div th:replace="~{fragments/navbar :: nav}"></div>
 
 <!-- Hero Section -->
-<section class="relative w-full h-[500px] md:h-[600px] lg:h-[700px]">
+<section class="relative w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[700px]">
     <img th:src="@{/images/universities/{heroImage}(heroImage=${university.heroImage})}"
          alt="University Image"
          class="w-full h-full object-cover">
@@ -189,8 +189,9 @@
                 </script>
 
             <!-- Review Modal (Hidden by default) -->
-<div id="reviewModal" class="fixed inset-0 bg-gray-900 bg-opacity-50 hidden flex items-center justify-center">
-    <div class="bg-white p-6 rounded-lg shadow-lg max-w-md w-full relative">
+<!-- Write Review Modal -->
+<div id="reviewModal" class="fixed inset-0 bg-gray-900 bg-opacity-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-sm sm:max-w-md relative">
         <!-- Close Button -->
         <button class="absolute top-3 right-3 text-gray-500 hover:text-gray-700"
                 onclick="document.getElementById('reviewModal').classList.add('hidden')">
@@ -200,60 +201,58 @@
         <h3 class="text-xl font-semibold text-gray-700 text-center">Submit Your Review</h3>
 
         <th:block sec:authorize="isAuthenticated()">
-        <form th:action="@{/reviews/submit}" method="post" class="review-form mt-2">
-            <input type="hidden" name="reviewedUniversity" th:value="${uniName}">
+            <form th:action="@{/reviews/submit}" method="post" class="review-form mt-2">
+                <input type="hidden" name="reviewedUniversity" th:value="${uniName}">
 
-            <!-- Add CSRF token explicitly -->
-            <input type="hidden" th:if="${_csrf != null}" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+                <!-- Add CSRF token explicitly -->
+                <input type="hidden" th:if="${_csrf != null}" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
 
-            <label class="block text-gray-700 font-medium">Title</label>
-            <input type="text" name="title" class="border p-2 w-full rounded-lg focus:outline-none focus:ring focus:ring-blue-300" required>
+                <label class="block text-gray-700 font-medium mt-2">Title</label>
+                <input type="text" name="title" class="border p-2 w-full rounded-lg focus:outline-none focus:ring focus:ring-blue-300" required>
 
-            <label class="block text-gray-700 font-medium mt-3">Rating</label>
-            <select name="rating" class="border p-2 w-full rounded-lg focus:outline-none focus:ring focus:ring-yellow-300" required>
-                <option value="">Select Rating</option>
-                <option value="5">⭐️⭐️⭐️⭐️⭐️</option>
-                <option value="4">⭐️⭐️⭐️⭐️</option>
-                <option value="3">⭐️⭐️⭐️</option>
-                <option value="2">⭐️⭐️</option>
-                <option value="1">⭐️</option>
-            </select>
+                <label class="block text-gray-700 font-medium mt-3">Rating</label>
+                <select name="rating" class="border p-2 w-full rounded-lg focus:outline-none focus:ring focus:ring-yellow-300" required>
+                    <option value="">Select Rating</option>
+                    <option value="5">⭐️⭐️⭐️⭐️⭐️</option>
+                    <option value="4">⭐️⭐️⭐️⭐️</option>
+                    <option value="3">⭐️⭐️⭐️</option>
+                    <option value="2">⭐️⭐️</option>
+                    <option value="1">⭐️</option>
+                </select>
 
-            <label class="block text-gray-700 font-medium mt-3">Your Review</label>
-            <textarea name="reviewText"
-                      class="border p-2 w-full h-32 rounded-lg focus:outline-none focus:ring focus:ring-green-300"
-                      required
-                      onpaste="return false"
-                      ondrop="return false"
-                      minlength="30"
-                      placeholder="Share your experience (min 30 characters)"
-                      id="reviewText"></textarea>
+                <label class="block text-gray-700 font-medium mt-3">Your Review</label>
+                <textarea name="reviewText"
+                          class="border p-2 w-full h-32 rounded-lg focus:outline-none focus:ring focus:ring-green-300 resize-none"
+                          required
+                          onpaste="return false"
+                          ondrop="return false"
+                          minlength="30"
+                          placeholder="Share your experience (min 30 characters)"
+                          id="reviewText"></textarea>
 
-            <!-- Prevent form submission if input is less than 30 characters -->
-            <script>
-                document.querySelector(".review-form").addEventListener("submit", function(event) {
-                 let reviewText = document.getElementById("reviewText").value.trim();
+                <!-- Prevent form submission if input is less than 30 characters -->
+                <script>
+                    document.querySelector(".review-form").addEventListener("submit", function(event) {
+                        let reviewText = document.getElementById("reviewText").value.trim();
 
-                 if (reviewText.length < 30) {
-                     alert("Your review must be at least 30 characters.");
-                     event.preventDefault(); // Stop form submission
-                 }
-             });
+                        if (reviewText.length < 30) {
+                            alert("Your review must be at least 30 characters.");
+                            event.preventDefault(); // Stop form submission
+                        }
+                    });
+                </script>
 
-            </script>
-
-            <button type="submit" class="mt-4 bg-green-600 text-white px-5 py-2 rounded-lg w-full shadow-md hover:bg-green-700">
-                Submit Review
-            </button>
-        </form>
+                <button type="submit" class="mt-4 bg-green-600 text-white px-5 py-2 rounded-lg w-full shadow-md hover:bg-green-700">
+                    Submit Review
+                </button>
+            </form>
         </th:block>
-
     </div>
 </div>
 
 <!-- Edit Review Modal -->
-<div id="editReviewModal" class="fixed inset-0 bg-gray-900 bg-opacity-50 hidden flex items-center justify-center">
-    <div class="bg-white p-6 rounded-lg shadow-lg max-w-md w-full relative">
+<div id="editReviewModal" class="fixed inset-0 bg-gray-900 bg-opacity-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-sm sm:max-w-md relative">
         <button class="absolute top-3 right-3 text-gray-500 hover:text-gray-700"
                 onclick="closeEditModal()">✖</button>
         <h3 class="text-xl font-semibold text-gray-700 text-center">Edit Your Review</h3>
@@ -265,8 +264,9 @@
             <!-- Add CSRF token explicitly -->
             <input type="hidden" th:if="${_csrf != null}" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
 
-            <label class="block text-gray-700 font-medium">Title</label>
+            <label class="block text-gray-700 font-medium mt-2">Title</label>
             <input type="text" name="title" id="editTitle" class="border p-2 w-full rounded-lg focus:outline-none focus:ring focus:ring-blue-300" required>
+
             <label class="block text-gray-700 font-medium mt-3">Rating</label>
             <select name="rating" id="editRating" class="border p-2 w-full rounded-lg focus:outline-none focus:ring focus:ring-yellow-300" required>
                 <option value="5">⭐️⭐️⭐️⭐️⭐️</option>
@@ -275,15 +275,14 @@
                 <option value="2">⭐️⭐️</option>
                 <option value="1">⭐️</option>
             </select>
-            <label class="block text-gray-700 font-medium mt-3">Your Review</label>
 
+            <label class="block text-gray-700 font-medium mt-3">Your Review</label>
             <textarea name="reviewText" id="editReviewText"
-                      class="border p-2 w-full h-32 rounded-lg focus:outline-none focus:ring focus:ring-green-300"
+                      class="border p-2 w-full h-32 rounded-lg focus:outline-none focus:ring focus:ring-green-300 resize-none"
                       required
                       onpaste="return false"
-                      ondrop="return false">
+                      ondrop="return false"></textarea>
 
-            </textarea>
             <button type="submit" class="mt-4 bg-blue-600 text-white px-5 py-2 rounded-lg w-full shadow-md hover:bg-blue-700">
                 Save Changes
             </button>

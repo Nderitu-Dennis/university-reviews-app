@@ -1,7 +1,8 @@
+<!-- fragments/navbar.html -->
 <nav class="fixed top-0 left-0 w-full z-50 bg-blue-600 text-white p-4 shadow-md"
      xmlns:sec="http://www.thymeleaf.org" xmlns:th="http://www.thymeleaf.org">
-    <div class="container mx-auto flex items-center">
-        <!-- svg icon and app title -->
+    <div class="container mx-auto flex justify-between items-center">
+        <!-- SVG icon and app title -->
         <div class="flex items-center space-x-2">
             <svg fill="#000000" viewBox="-1 0 19 19" xmlns="http://www.w3.org/2000/svg" class="w-8 h-8">
                 <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
@@ -10,22 +11,28 @@
                     <path d="M16.141 7.905c.24.102.24.269 0 .37l-7.204 3.058a1.288 1.288 0 0 1-.874 0L.859 8.276c-.24-.102-.24-.27 0-.371l7.204-3.058a1.287 1.287 0 0 1 .874 0zm-6.833 4.303 3.983-1.69v2.081c0 1.394-2.145 2.524-4.791 2.524s-4.79-1.13-4.79-2.524v-2.082l3.982 1.69a2.226 2.226 0 0 0 1.616 0zm4.94 1.677h1.642v-1.091a.822.822 0 1 0-1.643 0zm.82-3.603a.554.554 0 1 0-.553-.554.554.554 0 0 0 .554.554zm0 1.415a.554.554 0 1 0-.553-.555.554.554 0 0 0 .554.555z"></path>
                 </g>
             </svg>
-            <span class="text-2xl font-bold">UniGuideKE</span>
+            <a href="/" class="text-2xl font-bold">UniGuideKE</a>
         </div>
 
-        <!-- Navbar Links - Centered -->
+        <!-- Mobile Menu Button -->
+        <button class="lg:hidden block text-white focus:outline-none" id="menu-toggle">
+            ☰
+        </button>
+
+        <!-- Navbar Links - Desktop -->
         <ul class="hidden lg:flex space-x-8 flex-1 justify-center" id="menu">
             <li><a href="#universities-section" class="hover:text-gray-300">Reviews</a></li>
             <li><a href="/index" class="hover:text-gray-300">Home</a></li>
+            <li><a href="#" class="hover:text-gray-300">Contact</a></li>
         </ul>
 
-        <!-- Login & Sign-Up (Adjusted for better spacing) -->
+        <!-- Login & Sign-Up (Shown only if user NOT logged in) -->
         <div class="hidden lg:flex space-x-4" sec:authorize="!isAuthenticated()">
             <a href="/login" class="bg-white text-blue-600 px-4 py-2 rounded transition duration-300 hover:bg-gray-200">Login</a>
             <a href="/registration-form" class="bg-white text-blue-600 px-4 py-2 rounded transition duration-300 hover:bg-gray-200">Sign Up</a>
         </div>
 
-        <!-- Logout & User Info (Adjusted spacing) -->
+        <!-- Logout & User Info (Shown only if logged in) -->
         <div class="hidden lg:flex items-center space-x-4" sec:authorize="isAuthenticated()">
             <span class="text-white" th:if="${#authorization.expression('isAuthenticated()')}">
                 Welcome, <span sec:authentication="principal.name"></span>
@@ -36,5 +43,37 @@
                 </button>
             </form>
         </div>
+    </div>
+
+    <!-- Mobile Dropdown Menu -->
+    <div class="hidden bg-blue-700 p-4 mt-2" id="mobile-menu">
+        <ul class="flex flex-col space-y-2">
+            <li><a href="#universities-section" class="hover:text-gray-300">Reviews</a></li>
+            <li><a href="/index" class="hover:text-gray-300">Home</a></li>
+            <li><a href="#" class="hover:text-gray-300">Contact</a></li>
+
+            <!-- Show Login/Signup if NOT logged in -->
+            <li sec:authorize="!isAuthenticated()">
+                <a href="/login" class="block bg-white text-blue-600 px-4 py-2 rounded transition duration-300 hover:bg-gray-200 text-center">Login</a>
+            </li>
+            <li sec:authorize="!isAuthenticated()">
+                <a href="/registration-form" class="block bg-white text-blue-600 px-4 py-2 rounded mt-2 transition duration-300 hover:bg-gray-200 text-center">Sign Up</a>
+            </li>
+
+            <!-- Show Logout if logged in -->
+            <li sec:authorize="isAuthenticated()">
+                <span class="text-white" th:if="${#authorization.expression('isAuthenticated()')}">
+                     Welcome, <span sec:authentication="principal.name"></span>
+                </span>
+            </li>
+
+            <li sec:authorize="isAuthenticated()">
+                <form th:action="@{/logout}" method="post" class="text-center">
+                    <button type="submit" class="bg-red-400 px-4 py-2 rounded transition duration-300 hover:bg-red-500">
+                        Logout
+                    </button>
+                </form>
+            </li>
+        </ul>
     </div>
 </nav>

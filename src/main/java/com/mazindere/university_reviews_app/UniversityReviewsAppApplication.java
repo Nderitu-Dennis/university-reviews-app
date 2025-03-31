@@ -13,6 +13,11 @@ public class UniversityReviewsAppApplication {
 	//todo-forgot -password-later cz we;ll use email-when a review posted an email sent
 	//todo-remove the uni cards at index and use a loop with info being fed from university controller
 
+	//QUICK FIX PROD
+	//todo-hero section not responsive
+	//todo-navbar not appearing in phone
+	//todo-login and signup make them responsive in mobile  how do i push do i have to start all over
+
 	public static void main(String[] args) {
 		SpringApplication.run(UniversityReviewsAppApplication.class, args);
 	}
