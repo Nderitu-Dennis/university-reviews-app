@@ -230,6 +230,32 @@ public class UniversityController {
                 "https://www.maseno.ac.ke/",
                 "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.818295453135!2d34.59480507316589!3d-0.006399906690910717!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182aa97bdc7a35f1%3A0x20276056a9ac87c9!2sMaseno%20University!5e0!3m2!1sen!2ske!4v1743021662064!5m2!1sen!2ske"
         ));
+
+        //meru
+        universityData.put("meru", new University(
+                "Meru University",
+                "default-hero.png",
+                "Meru University of Science and Technology (MUST) is a public university in Kenya dedicated to advancing education in science," +
+                        " technology, and innovation. Chartered in 2013, the university offers a wide range of programs in engineering, information" +
+                        " technology, health sciences, business, agriculture, and education. Located in Meru County, MUST boasts modern facilities," +
+                        " including well-equipped laboratories, a digital library, and an innovation hub that fosters research and entrepreneurship. " +
+                        "The university provides a vibrant student life with numerous clubs, sports activities, and leadership opportunities.",
+
+                Arrays.asList("School of Agriculture & Food Science",
+                        "School of Business & Economics",
+                        "School of Computing & Informatics",
+                        "School of Education",
+                        "School of Engineering & Architecture",
+                        "School of Health Sciences",
+                        "School of Pure & Applied Sciences",
+                        "School of Nursing",
+                        "School of Public Health & Community Development",
+                        "School of Nursing"
+                        ),
+
+                "https://www.must.ac.ke/",
+                "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d8419.991610350837!2d37.6977814935867!3d0.13550885642272037!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x17883c967d5c1517%3A0x94e1dbf4dfea47bd!2sMeru%20University%20of%20Science%20and%20Technology!5e0!3m2!1sen!2ske!4v1743490862907!5m2!1sen!2ske"
+        ));
     }
 
     @GetMapping("/universities/{uniName}")

@@ -32,7 +32,7 @@ public class FunFactService {
                 Map.of("role", "user", "content", prompt)
         ));
 
-        requestBody.put("temperature", 0.3); //low-randomness & predictability
+        requestBody.put("temperature", 0.4); //low-randomness & predictability
         requestBody.put("frequency_penalty", 0.2); //avoids word repetition
         requestBody.put("presence_penalty", 0.1); //encourages new responses-diversity
       //  requestBody.put("top_p", 0.7); //selection of high confidence words
