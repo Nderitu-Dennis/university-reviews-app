@@ -1,6 +1,5 @@
 HELP.md
 target/
-src/main/resources/application.properties
 universitydb.sql
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
