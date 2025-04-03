@@ -256,6 +256,28 @@ public class UniversityController {
                 "https://www.must.ac.ke/",
                 "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d8419.991610350837!2d37.6977814935867!3d0.13550885642272037!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x17883c967d5c1517%3A0x94e1dbf4dfea47bd!2sMeru%20University%20of%20Science%20and%20Technology!5e0!3m2!1sen!2ske!4v1743490862907!5m2!1sen!2ske"
         ));
+
+        //kisii
+        universityData.put("kisii", new University(
+                "Kisii University",
+                "default-hero.png",
+                "Kisii University College was founded in 1965 as a Primary Teachers Training College. The college continued up to 1983 when it was upgraded to a Secondary Teachers College to offer Diploma programmes. The Government of Kenya mandated Egerton University to take over the College as its campus in 1994."+
+                        "In 1999, the Faculty of Commerce established Bachelor of Business and Management as its first degree program within the campus to run alongside Post Graduate Diploma in Education (PGDE), which was phased out in the year 2001. On 23rd August 2007, Kisii University College was established through a Government " +
+                        "Legal Notice as a constituent College of Egerton University. On 6th February 2013, Former President Mwai Kibaki granted Kisii University Charter in accordance to the Universities Act 2012",
+
+                Arrays.asList("School of Business & Economics",
+                        "School of Agriculture & Natural Resources Management",
+                        "School of Arts & Social Sciences",
+                        "School of Education & Human Resource Development",
+                        "School of Health Sciences",
+                        "School of Information, Science & Technology",
+                        "School of Pure & Applied Sciences",
+                        "School of Law"
+                ),
+
+                "https://kisiiuniversity.ac.ke/",
+                "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.5282839136353!2d34.78115862356073!3d-0.6908598852622834!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182b3eaaf8db3f8b%3A0xae074315aedc0c34!2sKisii%20University!5e0!3m2!1sen!2ske!4v1743709793366!5m2!1sen!2ske"
+        ));
     }
 
     @GetMapping("/universities/{uniName}")
