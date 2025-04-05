@@ -79,7 +79,7 @@ public class UniversityController {
         //uon
         universityData.put("uon",new University(
                 "University of Nairobi",
-                "default-hero.png",
+                "uon-hero.png",
                 "The University of Nairobi is Kenya’s premier public university, established in 1970. It is renowned for its academic" +
                         " excellence, research, and innovation, offering a wide range of undergraduate and postgraduate programs across various" +
                         " disciplines, including medicine, engineering, business, law, and social sciences. With multiple campuses in Nairobi, UoN " +
@@ -106,7 +106,7 @@ public class UniversityController {
         //tuk
         universityData.put("tuk", new University(
                 "Technical University of Kenya",
-                "default-hero.png",
+                "tuk-hero.png",
                 "The Technical University of Kenya (TUK) is a leading institution specializing in technical and applied sciences education." +
                         " Originally established as the Kenya Polytechnic in 1961, it gained university status in 2012. TUK offers programs" +
                         " in engineering, technology, architecture, business, and applied sciences, emphasizing hands-on training and " +
@@ -125,7 +125,7 @@ public class UniversityController {
         //chuka
         universityData.put("chuka", new University(
                 "Chuka University",
-                "default-hero.png",
+                "chuka-hero.jpg",
                 "Chuka University is a public institution located in Ndagani town, Tharaka Nithi County. It offers diverse programs in" +
                         " agriculture, business, education, engineering, and technology. Established in 2004 as a constituent college of " +
                         "Egerton University, it attained full university status in 2013. It is known for its scenic environment," +
@@ -150,7 +150,7 @@ public class UniversityController {
         //egerton
         universityData.put("egerton", new University(
                 "Egerton University",
-                "default-hero.png",
+                "egerton-hero.jpg",
                 "Egerton University, established in 1939 and chartered in 1987, is a leading public university in Kenya, renowned" +
                         " for its strong emphasis on agriculture, engineering, business, and education. Its main campus is in Njoro, Nakuru" +
                         " County, with a history of excellence in agricultural research and practical learning. The university is known for" +
@@ -177,7 +177,7 @@ public class UniversityController {
         //jkuat
         universityData.put("jkuat", new University(
                 "JKUAT",
-                "default-hero.png",
+                "jkuat-hero.png",
                 "Jomo Kenyatta University of Agriculture and Technology (JKUAT) is a leading public university, specializing in" +
                         " technology, engineering, agriculture, and business studies. Established in 1981 as a middle-level college and " +
                         "later chartered as a university in 1994, it is known for its strong focus on innovation, research, and " +
@@ -204,7 +204,7 @@ public class UniversityController {
         //maseno
         universityData.put("maseno", new University(
                 "Maseno University",
-                "default-hero.png",
+                "maseno-hero.jpg",
                 "Maseno University is known for its strong programs in IT, business, education, " +
                         "medicine, and environmental sciences. Established in 1991 and chartered in 2000, it is the only university in " +
                         "Kenya located along the Equator. The main campus is in Maseno, Kisumu County, with additional campuses in Kisumu " +
@@ -234,7 +234,7 @@ public class UniversityController {
         //meru
         universityData.put("meru", new University(
                 "Meru University",
-                "default-hero.png",
+                "meru-hero.jpg",
                 "Meru University of Science and Technology (MUST) is a public university in Kenya dedicated to advancing education in science," +
                         " technology, and innovation. Chartered in 2013, the university offers a wide range of programs in engineering, information" +
                         " technology, health sciences, business, agriculture, and education. Located in Meru County, MUST boasts modern facilities," +
@@ -260,7 +260,7 @@ public class UniversityController {
         //kisii
         universityData.put("kisii", new University(
                 "Kisii University",
-                "default-hero.png",
+                "kisii-hero.png",
                 "Kisii University College was founded in 1965 as a Primary Teachers Training College. The college continued up to 1983 when it was upgraded to a Secondary Teachers College to offer Diploma programmes. The Government of Kenya mandated Egerton University to take over the College as its campus in 1994."+
                         "In 1999, the Faculty of Commerce established Bachelor of Business and Management as its first degree program within the campus to run alongside Post Graduate Diploma in Education (PGDE), which was phased out in the year 2001. On 23rd August 2007, Kisii University College was established through a Government " +
                         "Legal Notice as a constituent College of Egerton University. On 6th February 2013, Former President Mwai Kibaki granted Kisii University Charter in accordance to the Universities Act 2012",
