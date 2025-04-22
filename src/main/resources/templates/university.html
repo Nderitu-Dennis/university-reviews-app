@@ -114,7 +114,7 @@
         <div th:each="review : ${reviews}" class="bg-gray-50 border border-gray-200 p-4 rounded-lg shadow-md">
             <div class="flex justify-between items-center">
                 <h3 class="font-semibold text-lg text-gray-800" th:text="${review.title}"></h3>
-                <span class="text-gray-500 text-sm">By: <span th:text="${review.reviewerName}"></span></span>
+                <span class="text-gray-500 text-sm"> Verified User</span>
             </div>
             <p class="text-gray-700 mt-2" th:text="${review.reviewText}"></p>
             <p class="text-sm text-yellow-500 mt-2">⭐ <span th:text="${review.rating}"></span> stars</p>
