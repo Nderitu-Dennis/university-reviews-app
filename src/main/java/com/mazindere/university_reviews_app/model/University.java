@@ -13,8 +13,6 @@ public class
 University {
     private String name;
     private String heroImage;
-    private String description;
-    private List<String> courses;
-    private String website;
-    private String mapsLink;
+    //removed courses, website, mapslink, description
+
 }

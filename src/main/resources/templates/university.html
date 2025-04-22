@@ -28,22 +28,7 @@
 <!-- Two-column layout , overview section-->
 <div id="overview-section" class="container mx-auto p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
 
-<!-- Left Column: Overview & Main Courses -->
-    <div class="flex flex-col gap-6">
-        <!--  Overview Section -->
-        <section class="bg-white shadow-lg rounded-lg p-6">
-            <h2 class="text-2xl font-bold text-blue-600">Overview</h2>
-            <p class="text-gray-700 mt-2" th:text="${university.description}"></p>
-        </section>
 
-        <!--  Main Courses Section -->
-        <section class="bg-white shadow-lg rounded-lg p-6">
-            <h2 class="text-2xl font-bold text-blue-600">Main Courses</h2>
-            <ul class="list-disc list-inside text-gray-700 mt-2">
-                <li th:each="course : ${university.courses}" th:text="${course}"></li>
-            </ul>
-        </section>
-    </div>
 
     <!-- Right Column: Fun Fact, Location & Website -->
     <div class="flex flex-col gap-6">
@@ -74,23 +59,8 @@
             </script>
         </section>
 
-        <!--  Maps & Location Section -->
-        <section class="bg-white shadow-lg rounded-lg p-6">
-            <h2 class="text-2xl font-bold text-blue-600">Location</h2>
-            <iframe th:src="${university.mapsLink}"
-                    class="w-full h-72 rounded-lg border-1 border-gray-300 shadow-md"
-                    allowfullscreen=""
-                    loading="lazy"
-                    referrerpolicy="no-referrer-when-downgrade">
-            </iframe>
-        </section>
 
-        <!--  Official Website Section -->
-        <section id="reviews-section" class="bg-white shadow-lg rounded-lg p-6">
-            <a th:href="${university.website}" target="_blank" class="text-blue-600 hover:underline mt-2 block">
-                Visit official website ↗
-            </a>
-        </section>
+
     </div>
 
 </div>
