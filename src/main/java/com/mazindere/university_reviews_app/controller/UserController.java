@@ -32,29 +32,40 @@ public class UserController {
         model.addAttribute("user", user);
 
         // Add user types for dropdown
-        List<UserType> userTypes = Arrays.asList(UserType.STUDENT, UserType.ALUMNI, UserType.PROSPECTIVE);
+        List<UserType> userTypes = Arrays.asList(UserType.STUDENT, UserType.ALUMNI);
         model.addAttribute("userTypes", userTypes);
 
         return "register"; // Thymeleaf template
     }
 
+    private boolean isValidStudentEmail(String email) {
+        return email != null && (email.endsWith("@mmu.ac.ke") || email.endsWith("@uonbi.ac.ke"));
+    }
+
+
     // Handle form submission
     @PostMapping("/register")
     public String registerUser(@ModelAttribute("user") User user, RedirectAttributes redirectAttributes) {
-        if (userService.emailExists(user.getEmail())) {
-            redirectAttributes.addFlashAttribute("error", "Email already exists!"); // Pass error message
-            return "redirect:/registration-form"; // Redirects back to the registration page
+        // Check if email is institutional
+        if (!isValidStudentEmail(user.getEmail())) {
+            redirectAttributes.addFlashAttribute("error", "Only students with a university email can register.");
+            return "redirect:/registration-form";
         }
 
-        // Assign default role before saving
+        // Check if email already exists
+        if (userService.emailExists(user.getEmail())) {
+            redirectAttributes.addFlashAttribute("error", "Email already exists!");
+            return "redirect:/registration-form";
+        }
+
+        // Assign default role and save
         user.setRole(UserRole.USER);
         userService.saveUser(user);
 
-        // Store success message using FlashAttributes
         redirectAttributes.addFlashAttribute("success", "Registration successful! You can now log in.");
-
-        return "redirect:/login"; // Redirect to login after successful registration
+        return "redirect:/login";
     }
+
 
 
     @GetMapping("/login")
