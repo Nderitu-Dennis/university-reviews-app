@@ -39,7 +39,10 @@ public class UserController {
     }
 
     private boolean isValidStudentEmail(String email) {
-        return email != null && (email.endsWith("@mmu.ac.ke") || email.endsWith("@uonbi.ac.ke"));
+        return email != null && (email.endsWith("@mmu.ac.ke")
+                || email.endsWith("@uonbi.ac.ke")
+                || email.endsWith("@chuka.ac.ke")
+                || email.endsWith("@students.must.ac.ke"));
     }
 
 
