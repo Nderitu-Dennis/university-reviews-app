@@ -3,6 +3,7 @@ package com.mazindere.university_reviews_app.controller;
 import com.mazindere.university_reviews_app.entity.Review;
 import com.mazindere.university_reviews_app.model.University;
 import com.mazindere.university_reviews_app.service.ReviewService;
+import com.mazindere.university_reviews_app.service.ScrapingService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,9 +19,11 @@ public class UniversityController {
 
     public static final Map<String, University> universityData = new HashMap<>();
     private final ReviewService reviewService;
+    private final ScrapingService scrapingService;
 
-    public UniversityController(ReviewService reviewService){
+    public UniversityController(ReviewService reviewService, ScrapingService scrapingService){
         this.reviewService=reviewService;
+        this.scrapingService = scrapingService;
     }
 
     // university data
@@ -106,6 +109,12 @@ public class UniversityController {
         List<Review> reviews = reviewService.getReviewsByUniversity(uniName);
         model.addAttribute("reviews", reviews); // Pass reviews to the Thymeleaf template
         model.addAttribute("university", university);
+
+        // Get program information from scraping
+        List<String> programs = ScrapingService.scrapeUniversityPrograms(uniName);
+        model.addAttribute("programs", programs);
+        model.addAttribute("programsUrl", ScrapingService.getProgramUrl(uniName));
+
         return "university"; // Loads the base template dynamically
     }
 }
