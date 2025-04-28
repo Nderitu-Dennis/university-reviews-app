@@ -33,8 +33,8 @@ public class ScrapingService {
         universityProgramUrls.put("tuk", "https://intake.tukenya.ac.ke/");
         universityProgramUrls.put("chuka", "https://www.chuka.ac.ke/academics-home-page/");
         universityProgramUrls.put("egerton", "https://www.egerton.ac.ke/academics/faculties");
-        universityProgramUrls.put("jkuat", "https://www.jkuat.ac.ke/programmes/");
-        universityProgramUrls.put("maseno", "https://maseno.ac.ke/index.php/academics/programmes");
+        universityProgramUrls.put("jkuat", "https://www.jkuat.ac.ke/division/academic/?page_id=17228");
+        universityProgramUrls.put("maseno", "https://programmes.maseno.ac.ke/all_programmes");
         universityProgramUrls.put("meru", "https://www.must.ac.ke/academic-programmes");
         universityProgramUrls.put("kisii", "https://www.kisiiuniversity.ac.ke/academics");
 
@@ -46,8 +46,8 @@ public class ScrapingService {
         universityCssSelectors.put("tuk", ".tabs-above");
         universityCssSelectors.put("chuka", ".programmes-list");
         universityCssSelectors.put("egerton", ".sppb-row-container");
-        universityCssSelectors.put("jkuat", ".programmes-listing");
-        universityCssSelectors.put("maseno", ".academic-programs");
+        universityCssSelectors.put("jkuat", ".content_wrap fullwidth");
+        universityCssSelectors.put("maseno", ".node__content.clearfix");
         universityCssSelectors.put("meru", ".programmes");
         universityCssSelectors.put("kisii", ".academic-programs");
     }
