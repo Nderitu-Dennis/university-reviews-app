@@ -95,26 +95,25 @@ public class UniversityController {
                 "kisii-hero.png"
                 ));
 
-                  }
+                          }
 
     @GetMapping("/universities/{uniName}")
     public String getUniversity(@PathVariable String uniName, Model model, HttpServletRequest request) {
         model.addAttribute("currentRequestUri", request.getRequestURI());
         University university = universityData.get(uniName);
         if (university == null) {
-            return "error-page"; // Handle unknown universities
+            return "error-page";
         }
 
-        // Fetch reviews for this university
         List<Review> reviews = reviewService.getReviewsByUniversity(uniName);
-        model.addAttribute("reviews", reviews); // Pass reviews to the Thymeleaf template
+        model.addAttribute("reviews", reviews);
         model.addAttribute("university", university);
 
-        // Get program information from scraping
-        List<String> programs = ScrapingService.scrapeUniversityPrograms(uniName);
+        List<String> programs = scrapingService.scrapeUniversityPrograms(uniName);
         model.addAttribute("programs", programs);
-        model.addAttribute("programsUrl", ScrapingService.getProgramUrl(uniName));
+        model.addAttribute("programsUrl", scrapingService.getProgramUrl(uniName));
 
-        return "university"; // Loads the base template dynamically
+        return "university";
     }
+
 }

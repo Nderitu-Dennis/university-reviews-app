@@ -35,7 +35,7 @@
             <p class="text-gray-500">Loading program information...</p>
         </div>
 
-        <div th:if="${!programs.isEmpty()}" class="mt-2">
+        <div th:if="${not #lists.isEmpty(programs)}" class="mt-2">
             <ul class="list-disc pl-5 space-y-1 columns-1 md:columns-2 lg:columns-4">
                 <li th:each="program : ${programs}" th:text="${program}" class="text-gray-700 break-inside-avoid"></li>
             </ul>
@@ -208,10 +208,10 @@
                 </select>
 
                 <label class="block text-gray-700 font-medium mt-3">Your Review</label>
+                <!-- onpaste="return false" -->
                 <textarea name="reviewText"
                           class="border p-2 w-full h-32 rounded-lg focus:outline-none focus:ring focus:ring-green-300 resize-none"
                           required
-                          onpaste="return false"
                           ondrop="return false"
                           minlength="30"
                           placeholder="Share your experience (min 30 characters)"
@@ -264,10 +264,11 @@
             </select>
 
             <label class="block text-gray-700 font-medium mt-3">Your Review</label>
+            <!-- onpaste="return false"-->
             <textarea name="reviewText" id="editReviewText"
                       class="border p-2 w-full h-32 rounded-lg focus:outline-none focus:ring focus:ring-green-300 resize-none"
                       required
-                      onpaste="return false"
+
                       ondrop="return false"></textarea>
 
             <button type="submit" class="mt-4 bg-blue-600 text-white px-5 py-2 rounded-lg w-full shadow-md hover:bg-blue-700">
