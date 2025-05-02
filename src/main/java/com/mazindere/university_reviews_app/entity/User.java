@@ -32,7 +32,6 @@ public class User implements UserDetails {
 
     @Column(name = "university_name", nullable = true)
     private String universityName;
-
     private String password;
 
     @Enumerated(EnumType.STRING)
@@ -40,6 +39,11 @@ public class User implements UserDetails {
 
     @Enumerated(EnumType.STRING)
     private UserRole role; // USER, ADMIN
+
+    private boolean emailVerified=false;
+    /*When you first “register,” you’ll save the user (with emailVerified = false) and generate a verificationToken.*/
+
+    private String verificationToken;
 
     // Required methods for authentication
     @Override
@@ -71,5 +75,7 @@ public class User implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
+
 
 }

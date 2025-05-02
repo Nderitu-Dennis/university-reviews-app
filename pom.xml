@@ -78,6 +78,12 @@
 			<version>1.19.1</version>
 		</dependency>
 
+		<!--Java mail sender for sending email-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-mail</artifactId>
+		</dependency>
+
 	</dependencies>
 
 	<build>

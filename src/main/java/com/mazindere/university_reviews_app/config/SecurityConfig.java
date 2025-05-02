@@ -19,13 +19,14 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 import static org.springframework.security.web.util.UrlUtils.isValidRedirectUrl;
 
 @Configuration
+
 public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/", "/index", "/registration-form", "/register", "/login", "/universities/**").permitAll() // Public pages
+                        .requestMatchers("/", "/index", "/registration-form", "/register/**","/verify", "/login", "/universities/**").permitAll() // Public pages
                         .requestMatchers("/reviews/**").permitAll()
                         .requestMatchers("/admin/**").hasAuthority("ADMIN") // Admin-only pages
                         .requestMatchers("/css/**", "/js/**", "/images/**").permitAll()

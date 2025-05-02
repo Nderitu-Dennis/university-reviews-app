@@ -47,7 +47,6 @@ public class ReviewService {
 
         System.out.println("****saving a review in the db...****");
         return reviewRepository.save(review);
-        // Removed the scraping trigger since we'll scrape fresh on each view
     }
 
     public Review getReviewById(Long id) {

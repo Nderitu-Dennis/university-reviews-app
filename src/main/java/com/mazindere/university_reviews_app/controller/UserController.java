@@ -3,9 +3,11 @@ package com.mazindere.university_reviews_app.controller;
 import com.mazindere.university_reviews_app.entity.User;
 import com.mazindere.university_reviews_app.enums.UserRole;
 import com.mazindere.university_reviews_app.enums.UserType;
+import com.mazindere.university_reviews_app.service.EmailService;
 import com.mazindere.university_reviews_app.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,14 +18,19 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 @Controller
 public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private EmailService emailService;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     // Show registration form
     @GetMapping("/registration-form")
@@ -38,17 +45,9 @@ public class UserController {
         return "register"; // Thymeleaf template
     }
 
-    private boolean isValidStudentEmail(String email) {
-        return email != null && (email.endsWith("@mmu.ac.ke")
-                || email.endsWith("@uonbi.ac.ke")
-                || email.endsWith("@chuka.ac.ke")
-                || email.endsWith("@students.must.ac.ke"));
-    }
-
-
-    // Handle form submission
+    // Handle initial registration and send verification email
     @PostMapping("/register")
-    public String registerUser(@ModelAttribute("user") User user, RedirectAttributes redirectAttributes) {
+    public String registerInitial(@ModelAttribute("user") User user, RedirectAttributes redirectAttributes) {
         // Check if email is institutional
         if (!isValidStudentEmail(user.getEmail())) {
             redirectAttributes.addFlashAttribute("error", "Only students with a university email can register.");
@@ -61,15 +60,62 @@ public class UserController {
             return "redirect:/registration-form";
         }
 
-        // Assign default role and save
-        user.setRole(UserRole.USER);
-        userService.saveUser(user);
+        // Generate verification token
+        String token = UUID.randomUUID().toString();
+        user.setVerificationToken(token);
 
-        redirectAttributes.addFlashAttribute("success", "Registration successful! You can now log in.");
+        // Set as unverified
+        user.setEmailVerified(false);
+
+        // Assign default role
+        user.setRole(UserRole.USER);
+
+        // Save user (but they can't login until verified)
+        userService.saveUser(user, true);
+
+        // Send verification email
+        emailService.sendVerificationEmail(user.getEmail(), token);
+
+        redirectAttributes.addFlashAttribute("success", "Registration started! Please check your email to verify your account.");
+        return "registration-confirmation";
+    }
+
+    // Handle the verification link click
+    @GetMapping("/verify")
+    public String verifyEmail(@RequestParam("token") String token, RedirectAttributes redirectAttributes) {
+        // Find user by token
+        System.out.println("Verification attempt with token: " + token);
+
+        User user = userService.findByVerificationToken(token);
+
+        if (user == null) {
+            redirectAttributes.addFlashAttribute("error", "Invalid or expired verification token.");
+            return "redirect:/login";
+        }
+        System.out.println("Found user: " + user.getEmail() + ", current verification status: " + user.isEmailVerified());
+
+
+        // Mark as verified
+        user.setEmailVerified(true);
+
+        // Clear the token (optional, for security)
+        user.setVerificationToken(null);
+
+        // Save the updated user
+        userService.saveUser(user, false);
+        System.out.println("User " + user.getEmail() + " marked as verified and saved");
+
+
+        redirectAttributes.addFlashAttribute("success", "Email verified successfully! You can now log in.");
         return "redirect:/login";
     }
 
-
+    private boolean isValidStudentEmail(String email) {
+        return email != null && (email.endsWith("@mmu.ac.ke")
+                || email.endsWith("@uonbi.ac.ke")
+                || email.endsWith("@chuka.ac.ke")
+                || email.endsWith("@students.must.ac.ke"));
+    }
 
     @GetMapping("/login")
     public String showLoginForm(Model model,
@@ -87,7 +133,7 @@ public class UserController {
             model.addAttribute("error", "Invalid email or password!");
         }
         if (success != null) {
-            model.addAttribute("success", "success");
+            model.addAttribute("success", success);
         }
 
         // Ensure the redirectUrl is a relative path and starts with a '/'
@@ -114,9 +160,4 @@ public class UserController {
     public String showIndexPage(){
         return "index";
     }
-
-
-
-
-    }
-
+}

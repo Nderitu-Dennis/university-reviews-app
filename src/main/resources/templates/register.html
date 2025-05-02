@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>UniGuideKE</title>
+    <title>UniGuideKE - Sign Up</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- global.css -->
@@ -27,8 +27,9 @@
 
         <div>
             <label class="block text-base">Student Email:</label>
-            <input type="email" th:field="*{email}" required
+            <input type="email" th:field="*{email}" placeholder="valid university email" required
                    class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500" />
+            <p class="mt-1 text-sm text-gray-500"> </p>
         </div>
 
         <div>
@@ -44,7 +45,6 @@
                         <circle cx="10" cy="10" r="3"/>
                     </svg>
                 </button>
-
             </div>
         </div>
 
@@ -68,6 +68,9 @@
         </button>
     </form>
 
+    <div class="mt-4 text-center text-sm text-gray-600">
+        Already have an account? <a th:href="@{/login}" class="text-blue-600 hover:underline">Log in</a>
+    </div>
 </div>
 
 <script>
