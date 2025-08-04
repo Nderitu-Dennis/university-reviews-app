@@ -8,7 +8,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class ReviewService {
@@ -21,22 +23,30 @@ public class ReviewService {
     public ReviewService(ReviewRepository reviewRepository, UserRepository userRepository) {
         this.reviewRepository = reviewRepository;
         this.userRepository = userRepository;
-       // this.scrapingService = scrapingService;
     }
 
+    // Fetch reviews for a specific university
     public List<Review> getReviewsByUniversity(String universityName) {
-        System.out.println("retrieving a review from the db for: " + universityName);
+        System.out.println("retrieving reviews from the DB for: " + universityName);
         List<Review> reviews = reviewRepository.findByReviewedUniversityOrderByIdDesc(universityName);
-
-        if (!reviews.isEmpty()) {
-            System.out.println(" ..reviews have been loaded to the view..");
-        } else {
-            System.out.println("No reviews found - checking if any reviews exist in database");
-        }
         return reviews;
     }
 
-    // ReviewService.java - Modify the saveReview method
+    // Calculate the rating distribution (number of reviews for each rating 1-5)
+    public Map<Integer, Long> getRatingDistribution(List<Review> reviews) {
+        Map<Integer, Long> distribution = reviews.stream()
+                .collect(Collectors.groupingBy(Review::getRating, Collectors.counting()));
+
+        // Ensure all ratings 1-5 are present in the map
+        for (int i = 1; i <= 5; i++) {
+            distribution.putIfAbsent(i, 0L);
+        }
+
+        return distribution;
+    }
+
+
+   // ReviewService.java - Modify the saveReview method
     public Review saveReview(Review review, Long userId) {
         review.setUser(userRepository.findById(userId)
                 .orElseThrow(() -> new RuntimeException("User not found")));

@@ -8,7 +8,11 @@ import com.mazindere.university_reviews_app.service.UserService;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/reviews")
@@ -80,5 +84,22 @@ public class ReviewController {
 
         reviewService.deleteReview(reviewId);
         return "redirect:/display-reviews/" + reviewedUniversity;
+    }
+
+    @GetMapping("/reviews/{university}")
+    public String getReviews(@PathVariable String reviewedUniversity, Model model) {
+        // Fetch reviews for the given university
+        List<Review> reviews = reviewService.getReviewsByUniversity(reviewedUniversity);
+
+        // Calculate rating distribution
+        Map<Integer, Long> ratingDistribution = reviewService.getRatingDistribution(reviews);
+
+        // Add the reviews and rating distribution to the model
+        model.addAttribute("reviews", reviews);
+        model.addAttribute("ratingDistribution", ratingDistribution);
+        model.addAttribute("university", reviewedUniversity);
+
+        // Return the view template
+        return "university";
     }
 }

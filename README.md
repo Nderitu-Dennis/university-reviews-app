@@ -6,15 +6,15 @@ The University Reviews App is a full-stack web platform that allows users to rev
 ## Features
 * Post, Edit, and Delete Reviews
 
-* Like & Unlike Reviews(not yet)
-
 * University Profile Pages with Details
 
-* AI-Generated Fun Facts about Institutions-used Groq API
- 
-* Google Maps Integration for Locations
+* AI-Generated Fun Facts about Institutions-used Groq API 
 
 * Responsive UI with Tailwind CSS
+
+* Email verification with Gmail SMTP
+
+
 
 ## Tech Stack
 * **Backend:** Java (Spring Boot), MySQL

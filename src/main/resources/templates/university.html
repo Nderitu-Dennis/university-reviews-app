@@ -79,6 +79,16 @@
 </div>
 
 <!-- Review Section -->
+
+<!-- Rating Distribution Bar -->
+<div class="mb-5">
+    <div class="flex space-x-2">
+        <div th:each="entry : ${ratingDistribution}" class="flex flex-col items-center">
+            <span th:text="${entry.key}"></span>
+            <div th:style="'width:' + ${entry.value} + '%;'" class="bg-blue-500 text-white text-center rounded p-2 mt-2" th:text="${entry.value}"></div>
+        </div>
+    </div>
+</div>
 <section>
 
 
